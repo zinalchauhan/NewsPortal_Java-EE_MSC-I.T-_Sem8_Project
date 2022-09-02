@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+       
+
+        <ui:include src="include/topscripts.xhtml" /> 
+        
+    </h:head>
+    <h:body>
+        
+        
+<div id="container">
+		<!-- Header  ================================================== -->
+                                            
+                                                <ui:include src="include/header.xhtml" /> 
+                
+		<section id="content-section">
+			<div class="container">
+                            
+                                                        <div class="row">
+					<div class="col-lg-12">
+						
+						<!-- Posts-block -->
+						<div class="posts-block standard-box">
+							<div class="title-section">
+                                                            <h1> <b style="color: #000; font-size: 30px;">   #{debateBean.debateTitle} </b></h1>
+                                                                        <h1><i class="lnr lnr-calendar-full"></i> &nbsp;&nbsp;#{debateBean.debateStartDate} &nbsp;&nbsp; to &nbsp;&nbsp; #{debateBean.debateEndDate} </h1>
+									
+							<ul class="post-tags">
+										<h1><li><i class="lnr lnr-user"></i>by News Portal</li>
+                                                                                    <li><i class="lnr lnr-book"></i><span>#{debateBean.subCategoryIDFK}</span></li></h1>
+									</ul>	
+							</div>
+
+							<div class="news-post large-post">
+                                                            <img src="/newsPortal-war/upload/debateImage/#{debateBean.debateImage}" height="300px" width="300px" alt=""/>
+								<div class="post-content">
+									
+									<div class="text-boxes">
+                                                                            <h:outputText escape="false" style="font-family: cursive; font-size: 20px;" value="#{debateBean.debateDescription}" />
+					</div>
+								</div>
+							</div>
+
+						
+
+						</div>
+						<!-- End Posts-block -->
+
+					</div>
+
+					
+				</div>
+                                                        
+
+                                                                      <!-- Advertisement -->
+				 <c:forEach items="#{adsBean.showall()}" begin="4" end="4"  var="item" >
+					<div class="advertisement">
+                                                                                                    <a href="#"><img src="/newsPortal-war/upload/adsImage/#{item.adsImage}" alt="" style="height: 80px; width: 620px"/></a>
+					</div>
+                                                                                 </c:forEach>
+				<!-- End Advertisement -->
+                                
+                                                                        <!-- contact form box -->
+                                                                        <c:if test="#{session.getAttribute('userID') != null}">
+                                                                         <c:if  test="#{debateBean.checkDate(debateBean.debateStartDate,debateBean.debateEndDate,'current')}">
+				<div class="contact-form-box">
+					<div class="title-section">
+						<h1><span>Leave a Comment</span> <span class="email-not-published">Your email address will not be published.</span></h1>
+					</div>
+                                                                                                        <h:form id="comment-form">
+						
+                                                                                                               <h:inputHidden value="#{debateBean.commentIDPK}" />
+                                                                                                            
+                                                                                                                <label for="comment">Comment*</label>
+                                                                                                                <h:inputTextarea id="comment"  value="#{debateBean.commentDescription}"/>
+                                                                                                                 
+                                                                                                          
+                                                                                                                    
+                                                                                                                  
+                                                                                                                
+                                                                                                         
+                                                                                                                 
+                                                                                                                  <h:inputHidden value="#{debateBean.debateIDPK}" />
+                                                                                                           
+                                                                                                                    <h:commandButton class="btn btn-success" value="Insert" action="#{debateBean.insert_comment()}"/>
+					</h:form>
+				</div>
+                                                                         </c:if>
+                                                                         </c:if>
+                                                                        <c:if test="#{session.getAttribute('userID') == null}">
+                                                                            <a class="btn btn-info read-more " href="http://localhost:8080/newsPortal-war/loginAdmin.xhtml"  >Login To Comment On Debate</a>
+                                                                        </c:if>
+				<!-- End contact form box -->
+				
+				  <!-- comment area box -->
+				<div class="comment-area-box">
+					<div class="title-section">
+                                        
+                                            <h1><span>#{commentBean.showCommentByDebateID(debateBean.debateIDPK).size()} Comments</span></h1>
+                                            
+					</div>
+					<ul class="comment-tree">
+                                                            
+                                            
+                                                                            <c:forEach items="#{commentBean.showCommentByDebateID(debateBean.debateIDPK)}" var="comm">
+                                            
+						<li>
+							<div class="comment-box">
+								<img alt="" src="../User/assets/upload/users/avatar3.jpg" />
+								<div class="comment-content">
+                                                                                                                                                            <h4>#{comm.userIDFK.userName}</h4>
+									<span><i class="fa fa-clock-o"></i>27 Jann 2018 at 8:57 pm</span>
+                                                                                                                                                                     <p>#{comm.commentDescription}</p>
+								</div>
+							</div>
+						</li>
+                                                                                                        </c:forEach>
+                                                                                                                    
+                                            
+                                                  
+						
+
+						
+
+						
+
+					</ul>
+				</div>
+				<!-- End comment area box -->
+
+				
+
+				<!-- Advertisement -->
+				 
+				<!-- End Advertisement -->      
+                            
+                            
+                                                    </div>
+                                  </section>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+
+		<!-- footer  ================================================== -->
+                                                <ui:include src="include/footer.xhtml" /> 
+		<!-- End footer -->
+
+	</div>
+	<!-- End Container -->
+
+	<!-- Login Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <div class="title-section">
+	        	<h1>Login</h1>
+	        </div>
+			<form id="login-form">
+				<p>Welcome! Login to your account.</p>
+				<label for="username">Username or Email Address*</label>
+				<input id="username" name="username" type="text" />
+				<label for="password">Password*</label>
+				<input id="password" name="password" type="password" />
+				<button type="submit" id="submit-register">
+					<i class="fa fa-paper-plane"></i> Login
+				</button>
+			</form>
+	      	<p>Don't have account? <a href="register.html">Register Here</a></p>
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- End Login Modal -->
+
+        <ui:include src="include/bottomscripts.xhtml" /> 
+        
+    </h:body>
+</html>
+

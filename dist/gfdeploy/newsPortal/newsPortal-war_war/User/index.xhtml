@@ -1,0 +1,495 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+       xmlns:p="http://primefaces.org/ui">
+    <h:head>
+       
+
+        <ui:include src="include/topscripts.xhtml" /> 
+        
+    </h:head>
+    <h:body>
+        
+        
+<div id="container">
+		<!-- Header  ================================================== -->
+                                            
+                                                <ui:include src="include/header.xhtml" /> 
+                
+		<!-- End Header -->
+
+		<!-- wide-news-heading
+			================================================== -->
+		<div class="wide-news-heading">
+
+			<div class="item main-news">
+
+				<div class="flexslider">
+					<ul class="slides">
+                                                                                <c:forEach items="#{newsBean.show_all()}" var="item2">
+                                                                                    <c:if test="#{item2.newsType == 2}">
+                                                                                        <c:if test="#{item2.newsStatus == 2}">
+						<li>
+							<div class="news-post large-image-post">
+                                                                                                                                                            <img  src="/newsPortal-war/upload/newsImage/#{item2.newsimageCollection[0].image}" alt="" style="height: 379px"/>
+								<div class="hover-box">
+                                                                                                                                                                           <a href="#" class="category category">#{item2.subCategoryIDFK.subCategoryName}</a>
+                                                                                                                                                                           <h2><p:commandLink action="#{newsBean.searchUser_click(item2.newsIDPK)}" actionListener="#{newsImageBean.addNewsIDFK(item2.newsIDPK)}">#{item2.newsTitle}</p:commandLink></h2>
+									<ul class="post-tags">
+                                                                                                                                                                                                         <li><i class="lnr lnr-calendar-full"></i>by <a href="#">#{item2.newsDate}</a></li>
+                                                                                                                                                                                                        <li><a href="#"><i class="lnr lnr-earth"></i><span>#{item2.cityIDFK.cityName}</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+                                                                                                                 </c:if>
+                                                                                                        </c:if>
+                                                                                                        </c:forEach>
+						
+						
+					</ul>
+				</div>
+
+			</div>
+                    <h:form>
+                        <c:forEach items="#{newsBean.show_all()}" var="item3">
+                                                                    <c:if test="#{item3.newsType == 3}">
+                                                                             <c:if test="#{item3.newsStatus == 2}">
+                                                                                 
+                                                                            <div class="item">  
+                                                                                    <div class="news-post image-post">
+                                                                                        <!--<img src="/newsPortal-war/upload/newsImage/" style="height: 189px" alt="" />-->
+                                                                                        <img src="/newsPortal-war/upload/newsImage/#{item3.newsimageCollection[0].image}" style="height: 189px"  />
+                                                                                            <div class="hover-box">
+                                                                                                <a href="#" class="category category-world">#{item3.subCategoryIDFK.subCategoryName}</a>
+                                                                                                <h2><p:commandLink action="#{newsBean.searchUser_click(item3.newsIDPK)}" actionListener="#{newsImageBean.addNewsIDFK(item3.newsIDPK)}">#{item3.newsTitle}</p:commandLink></h2>
+                                                                                                    <ul class="post-tags">
+                                                                                                      <li><i class="lnr lnr-calendar-full"></i>by <a href="#">#{item3.newsDate}</a></li>
+                                                                                                         <li><a href="#"><i class="lnr lnr-earth"></i><span>#{item3.cityIDFK.cityName}</span></a></li>
+                                                                                                    </ul>
+                                                                                            </div>
+                                                                                    </div>
+                                                                            </div>
+                                                                             </c:if>
+                                                                  </c:if>
+                                                             </c:forEach>
+                    </h:form>
+			
+			
+
+		</div>
+		<!-- End wide-news-heading -->
+
+		<!-- content-section 
+			================================================== -->
+		<section id="content-section">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-lg-8">
+						
+						<!-- Posts-block -->
+						<div class="posts-block standard-box">
+							<div class="title-section">
+								<h1>Latest News <i class="lnr lnr-bookmark"></i></h1>
+							</div>
+							<div class="row">
+                                                                                                                                                             <c:forEach items="#{newsBean.show_all()}" var="latestNews">
+                                                                                                                                                             <c:if test="#{latestNews.newsType == 8}">
+                                                                                                                                                                 <c:if test="#{latestNews.newsStatus == 2}">
+								<div class="col-sm-6">
+									<div class="news-post standart-post">
+										<div class="post-image">
+											<a href="single-post-2.html">
+												<img src="/newsPortal-war/upload/newsImage/#{latestNews.newsimageCollection[0].image}" alt="" />
+											</a>
+                                                                                                                                                                                                                            <a href="#" class="category category-tech">#{latestNews.subCategoryIDFK.subCategoryName}</a>
+										</div>
+                                                                                                                                                                                                        <h2><p:commandLink action="#{newsBean.searchUser_click(latestNews.newsIDPK)}" actionListener="#{newsImageBean.addNewsIDFK(latestNews.newsIDPK)}">#{latestNews.newsTitle}</p:commandLink></h2>
+										<ul class="post-tags">
+                                                                                                                                                                                                        <li><i class="lnr lnr-calendar-full"></i>by <a href="#">#{latestNews.newsDate}</a></li>
+                                                                                                                                                                                                        <li><a href="#"><i class="lnr lnr-earth"></i><span>#{latestNews.cityIDFK.cityName}</span></a></li>
+											
+										</ul>
+                                                                                                                                                                                                        <p>#{latestNews.newsSubtitle}.</p>
+									</div>
+								</div>
+                                                                                                                                                                     </c:if>
+                                                                                                                                                             </c:if>
+                                                                                                                                                             </c:forEach>
+								<div class="col-sm-6">
+									<h2>More ...</h2>
+									<ul class="list-news">
+										<li>
+											<h2><a href="single-post.html">Technology Remote Jobs</a></h2>
+										</li>
+										<li>
+											<h2><a href="single-post.html">United States celebrate</a></h2>
+										</li>
+										<li>
+											<h2><a href="single-post.html">Fruits and Vegetables</a></h2>
+										</li>
+										<li>
+											<h2><a href="single-post.html">New alternatives are more productive</a></h2>
+										</li>
+										<li>
+											<h2><a href="single-post.html">Fruits and Vegetables</a></h2>
+										</li>
+										<li>
+											<h2><a href="single-post.html">Traditional food</a></h2>
+										</li>
+										<li>
+											<h2><a href="single-post.html">Hapier Child</a></h2>
+										</li>
+										<li>
+											<h2><a href="single-post.html">Travelling is part of our life</a></h2>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- End Posts-block -->
+						
+						<!-- Posts-block -->
+						<div class="posts-block featured-box">
+							<div class="title-section">
+								<h1>Featured</h1>
+							</div>
+
+							<div class="owl-wrapper">
+								<div class="owl-carousel" data-num="3">
+								  <c:forEach items="#{newsBean.show_all()}" var="item5">
+                                                                                                                                                                    <c:if test="#{item5.newsType == 5}">
+                                                                                                                                                                         <c:if test="#{item5.newsStatus == 2}">
+									<div class="item">
+										<div class="news-post standart-post">
+											<div class="post-image">
+												<a href="single-post-2.html">
+													<img src="/newsPortal-war/upload/newsImage/#{item5.newsimageCollection[0].image}" style="height: 140px" alt="" />
+												</a>
+                                                                                                                                                                                                                                 <a href="#" class="category category-fashion">#{item5.subCategoryIDFK.subCategoryName}</a>
+											</div>
+                                                                                                                                                                                                                                <h2><p:commandLink action="#{newsBean.searchUser_click(item5.newsIDPK)}" actionListener="#{newsImageBean.addNewsIDFK(item5.newsIDPK)}">#{item5.newsTitle}</p:commandLink></h2>
+											<ul class="post-tags">
+												 <li><i class="lnr lnr-calendar-full"></i>by <a href="#">#{item5.newsDate}</a></li>
+                                                                                                                                                                                                                                                 <li><a href="#"><i class="lnr lnr-earth"></i><span>#{item5.cityIDFK.cityName}</span></a></li>
+											</ul>
+										</div>
+									</div>
+                                                                                                                                                                         </c:if>
+                                                                                                                                                                      </c:if>
+                                                                                                                                                                     </c:forEach>
+								
+									
+
+								</div>
+							</div>
+							
+						</div>
+						<!-- End Posts-block -->
+
+						<!-- Advertisement -->
+						<c:forEach items="#{adsBean.showall()}" begin="3" end="4"  var="item" >
+							<div class="advertisement">
+								 <a href="#"><img src="/newsPortal-war/upload/adsImage/#{item.adsImage}" alt="" style="height: 80px; width: 620px"/></a>
+							</div>
+                                                                                                                                            <br/>
+                                                                                                                                              </c:forEach>
+						<!-- End Advertisement -->
+						
+						<!-- Posts-block -->
+						<div class="posts-block combined-box">
+							<div class="title-section">
+								<h1>Lifestyle</h1>
+							</div>
+							
+							<div class="row">
+                                                        
+                                                                                                                                                              <c:forEach items="#{newsBean.show_all()}" step="4" var="lifeStyle" >
+                                                                                                                                                                <c:if test="#{lifeStyle.newsType == 6}">
+                                                                                                                                                                    <c:if test="#{lifeStyle.newsStatus == 2}">
+								<div class="col-md-6">
+									<div class="news-post standart-post">
+										<div class="post-image">
+											<a href="single-post-2.html">
+												<img src="/newsPortal-war/upload/newsImage/#{lifeStyle.newsimageCollection[0].image}" alt="" />
+											</a>
+                                                                                                                                                                                                                        <a href="#" class="category category-fashion">#{lifeStyle.subCategoryIDFK.subCategoryName}</a>
+										</div>
+                                                                                                                                                                                                        <h2><p:commandLink action="#{newsBean.searchUser_click(lifeStyle.newsIDPK)}" actionListener="#{newsImageBean.addNewsIDFK(lifeStyle.newsIDPK)}">#{lifeStyle.newsTitle}</p:commandLink></h2>
+										<ul class="post-tags">
+											  <li><i class="lnr lnr-calendar-full"></i>by <a href="#">#{lifeStyle.newsDate}</a></li>
+                                                                                                                                                                                                                                <li><a href="#"><i class="lnr lnr-earth"></i><span>#{lifeStyle.cityIDFK.cityName}</span></a></li>
+										</ul>
+										
+									</div>
+								</div>
+                                                                                                                                                                    </c:if>
+                                                                                                                                                                </c:if>
+                                                                                                                                                                </c:forEach>
+                                                       
+								<div class="col-md-6">
+									<div class="row">
+                                                                                                                                                                                                <c:forEach items="#{newsBean.show_all()}" var="item6" >
+                                                                                                                                                                                                             <c:if test="#{item6.newsType == 6}">
+                                                                                                                                                                                                                <c:if test="#{item6.newsStatus == 2}">
+										<div class="col-6">
+											<div class="news-post thumb-post">
+												<div class="post-image">
+													<a href="single-post-2.html">
+                                                                                                                                                                                                                                                                    <img src="/newsPortal-war/upload/newsImage/#{item6.newsimageCollection[0].image}" style="height: 100px" alt="" />
+													</a>
+												</div>
+                                                                                                                                                                                                                                <h2><p:commandLink action="#{newsBean.searchUser_click(item6.newsIDPK)}" actionListener="#{newsImageBean.addNewsIDFK(item6.newsIDPK)}">#{item6.newsTitle}</p:commandLink></h2>
+											</div>
+										</div>
+                                                                                                                                                                                                        </c:if>
+                                                                                                                                                                                                        </c:if>
+                                                                                                                                                                                                        </c:forEach>
+										
+									</div>
+									
+									
+								</div>
+							</div>
+						</div>
+						<!-- End Posts-block -->
+						
+						<!-- Posts-block -->
+						<div class="posts-block articles-box">
+							<div class="title-section">
+								<h1>Other News</h1>
+							</div>
+                                                                                                                                             <c:forEach items="#{newsBean.show_all()}" var="item1">
+                                                                                                                                                  <c:if test="#{item1.newsType == 1}">
+                                                                                                                                                       <c:if test="#{item1.newsStatus == 2}">
+							<div class="news-post article-post">
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="post-image">
+											<a href="single-post-2.html">
+												<img src="/newsPortal-war/upload/newsImage/#{item1.newsimageCollection[0].image}" alt="" />
+											</a>
+                                                                                                                                                                                                                              <a class="category category-travel" href="#">#{item1.subCategoryIDFK.subCategoryName}</a>
+										</div>
+									</div>
+									<div class="col-sm-8">
+                                                                                                                                                                                                <h2><p:commandLink action="#{newsBean.searchUser_click(item1.newsIDPK)}" actionListener="#{newsImageBean.addNewsIDFK(item1.newsIDPK)}">#{item1.newsTitle}</p:commandLink></h2>
+										<ul class="post-tags">
+											 <li><i class="lnr lnr-calendar-full"></i>by <a href="#">#{item1.newsDate}</a></li>
+                                                                                                                                                                                                                             <li><a href="#"><i class="lnr lnr-earth"></i><span>#{item1.cityIDFK.cityName}</span></a></li>
+										</ul>
+                                                                                                                                                                                                <p>#{item1.newsSubtitle}</p>
+									</div>
+								</div>
+							</div>
+                                                                                                                                                       </c:if>
+                                                                                                                                                  </c:if>
+                                                                                                                                    </c:forEach>
+							
+							
+					                                                                                                                                 <h:form>
+                                                                                                                                                                                                                                                                                    <h:commandLink class="btn btn-info news-post "  id="btn_edit"  action="./newsAllList.xhtml" ><b>Read All News</b> <i class="fa fa-newspaper-o" aria-hidden="true"></i></h:commandLink>
+
+                                                                                                                                                                                                                                                                                                 </h:form>
+
+						</div>
+						<!-- End Posts-block -->
+
+					</div>
+
+					<div class="col-lg-4 sidebar-sticky">
+						
+						<!-- Sidebar -->
+						<div class="sidebar theiaStickySidebar">
+							
+							<div class="widget social-widget">
+								<h1>Stay Connected </h1>
+								<p>Do you want to be informed everytime with our latest news?</p>
+								<ul class="social-share">
+									<li>
+										<a href="#" class="rss">
+											<i class="fa fa-rss"></i>
+											<span>345</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="facebook">
+											<i class="fa fa-facebook"></i>
+											<span>3,460</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="twitter">
+											<i class="fa fa-twitter"></i>
+											<span>5,600</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="google">
+											<i class="fa fa-google-plus"></i>
+											<span>659</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="widget slider-widget">
+                                                                
+								<h1>Featured Posts</h1>
+								<div class="flexslider">
+                                                                                                                                                            
+									<ul class="slides">
+                                                                                                                                                                                                  <c:forEach items="#{newsBean.show_all()}" var="item4">
+                                                                                                                                                                                                        <c:if test="#{item4.newsType == 4}">
+                                                                                                                                                                                                         <c:if test="#{item4.newsStatus == 2}">
+										<li>
+											<img alt="" src="/newsPortal-war/upload/newsImage/#{item4.newsimageCollection[0].image}" />
+											<div class="slider-caption">
+												<a href="#" class="category category-tech">Tech</a>
+                                                                                                                                                                                                                                                <h2><p:commandLink action="#{newsBean.searchUser_click(item4.newsIDPK)}" actionListener="#{newsImageBean.addNewsIDFK(item4.newsIDPK)}">#{item4.newsTitle}</p:commandLink></h2>
+												<ul class="post-tags">
+												     <li><i class="lnr lnr-calendar-full"></i>by <a href="#">#{item4.newsDate}</a></li>
+                                                                                                                                                                                                                                                     <li><a href="#"><i class="lnr lnr-earth"></i><span>#{item4.cityIDFK.cityName}</span></a></li>
+												</ul>
+											</div>
+										</li>
+                                                                                                                                                                                                        </c:if>
+                                                                                                                                                                                                    </c:if>
+                                                                                                                                                                                                  </c:forEach>
+										
+										
+									</ul>
+								</div>
+							</div>
+							<div class="widget news-widget">
+								<h1>Today Featured</h1>
+								<ul class="small-posts">
+                                                                                                                                                                         <c:forEach items="#{newsBean.show_all()}" var="item7" >
+                                                                                                                                                                             <c:if test="#{item7.newsType == 7}">
+                                                                                                                                                                                  <c:if test="#{item7.newsStatus == 2}">
+									<li>
+										<a href="single-post.html">
+                                                                                                                                                                                                        <img src="/newsPortal-war/upload/newsImage/#{item7.newsimageCollection[0].image}" alt="" />
+										</a>
+										<div class="post-cont">
+                                                                                                                                                                                                                        <h2><p:commandLink action="#{newsBean.searchUser_click(item7.newsIDPK)}" actionListener="#{newsImageBean.addNewsIDFK(item7.newsIDPK)}">#{item7.newsTitle}</p:commandLink></h2>
+											<ul class="post-tags">
+                                                                                                                                                                                                                                <li><i class="lnr lnr-calendar-full"></i>by <a href="#">#{item7.newsDate}</a></li>
+                                                                                                                                                                                                                                <li><a href="#"><i class="lnr lnr-earth"></i><span>#{item7.cityIDFK.cityName}</span></a></li>
+											</ul>
+										</div>
+									</li>
+                                                                                                                                                                                  </c:if>
+                                                                                                                                                                             </c:if>
+                                                                                                                                                                             </c:forEach>
+									
+
+								</ul>
+							</div>
+							
+                                                                                                                                              <c:forEach items="#{adsBean.showall()}" begin="1" end="1"  var="item" >
+							<div class="advertisement">
+								 <a href="#"><img src="/newsPortal-war/upload/adsImage/#{item.adsImage}" alt="" style="height: 250px; width: 300px"/></a>
+							</div>
+                                                                                                                                              </c:forEach>
+
+							
+
+							<div class="widget tags-widget">
+								<h1>Tags</h1>
+								<ul class="tags-list">
+									<li><a href="#">Food</a></li>
+									<li><a href="#">Sport</a></li>
+									<li><a href="#">Lifestyle</a></li>
+									
+								</ul>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+				<!-- Advertisement -->
+				                                                           <c:forEach items="#{adsBean.showall()}" begin="2" end="2"  var="item" >
+							<div class="advertisement">
+								 <a href="#"><img src="/newsPortal-war/upload/adsImage/#{item.adsImage}" alt="" style="height: 80px; width: 620px"/></a>
+							</div>
+                                                                                                                                              </c:forEach>
+				<!-- End Advertisement -->
+
+				<!-- more from news box -->
+				<div class="more-from-news">
+					<h1>Weekly Top News</h1>
+					<div class="row">
+						<p:feedReader value="https://www.indiatoday.in/rss/1206514" var="feed">
+                                            
+						<div class="col-lg-2 col-md-3 col-sm-4 col-6">
+							<div class="news-post thumb-post">
+								<div class="post-image">
+<!--									<a href="single-post-2.html">
+										<img src="./User/assets/upload/blog/s1.jpg" alt="" />
+									</a>-->
+                                                                                                                                                                            <h:outputText value="#{feed.description.value}" style="font-family: Open Snas; font-weight: bold;"  escape="false"/>
+
+                                                                                                                                                                
+								</div>
+<!--								<h2><a href="single-post.html">Duis aute irure dolor in reprehenderit in voluptate</a></h2>-->
+							</div>
+
+						</div>
+						
+                                                                                                    </p:feedReader>	
+						
+                                            
+							
+						
+					
+					</div>
+				</div>
+				<!-- end more from news box -->
+			</div>
+		</section>
+		<!-- End content section -->
+
+		<!-- footer  ================================================== -->
+                                                <ui:include src="include/footer.xhtml" /> 
+		<!-- End footer -->
+
+	</div>
+	<!-- End Container -->
+
+	<!-- Login Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <div class="title-section">
+	        	<h1>Login</h1>
+	        </div>
+			<form id="login-form">
+				<p>Welcome! Login to your account.</p>
+				<label for="username">Username or Email Address*</label>
+				<input id="username" name="username" type="text" />
+				<label for="password">Password*</label>
+				<input id="password" name="password" type="password" />
+				<button type="submit" id="submit-register">
+					<i class="fa fa-paper-plane"></i> Login
+				</button>
+			</form>
+	      	<p>Don't have account? <a href="register.html">Register Here</a></p>
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- End Login Modal -->
+
+        <ui:include src="include/bottomscripts.xhtml" /> 
+        
+    </h:body>
+</html>
+

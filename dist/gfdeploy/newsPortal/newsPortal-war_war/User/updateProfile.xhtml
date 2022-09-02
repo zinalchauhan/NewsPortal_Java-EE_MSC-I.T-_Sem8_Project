@@ -1,0 +1,261 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+
+        <ui:include src="include/topscripts.xhtml" /> 
+
+    </h:head>
+    <h:body>
+
+
+        <div id="container">
+            <!-- Header  ================================================== -->
+
+            <ui:include src="include/header.xhtml" /> 
+
+            <section id="content-section">
+                <div class="container">
+                    <div class="row">
+
+
+
+
+                        <div class="col-lg-8">
+
+
+                            
+
+                                
+                                <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Update Profile</h4>
+
+                            <h:form enctype="multipart/form-data">
+                                      
+                                            
+                                <h:inputHidden value="#{userBean.userIDPK}" />
+                                            <div class="row mb-4">
+                                                <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">user name</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText  value="#{userBean.userName}" class="form-control"  p:placeholder="Enter Your " />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <label for="horizontal-email-input" class="col-sm-3 col-form-label">Email</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText value="#{userBean.userEmail}" class="form-control"  p:placeholder="Enter Your Email ID" />
+                                                </div>
+                                            </div>
+                                          
+                                            <div class="row mb-4">
+                                                <label for="horizontal-email-input" class="col-sm-3 col-form-label">Mobile No</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText  value="#{userBean.userMobile}" class="form-control"  p:placeholder="Enter Your Mobile NO" />
+                                                </div>
+                                            </div>
+                                
+                                
+                                     <div class="row mb-4">
+                                                <label for="horizontal-email-input" class="col-sm-3 col-form-label">Mobile No</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputFile  value="#{userBean.file}" class="form-control"  p:placeholder="Profile" />
+                                                </div>
+                                            </div>
+                                
+                                            
+                                            
+                                            
+                                        
+
+
+                                                    
+                                            
+                                             <div class="row">
+                                        <label  class="col-sm-3 col-form-label">State</label>
+                                        <div class="col-sm-9">
+                                            <h:selectOneMenu class="form-control" value="#{userBean.stateIDFK}" >
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{userBean.stateList}" var="state" itemValue="#{state.stateIDPK}" itemLabel="#{state.stateName}" />
+                                                <f:ajax listener="#{userBean.fillCity()}" render="city"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    
+                                     <div class="row">
+                                        <label  class="col-md-3 col-form-label">City </label>
+                                        <div class="col-sm-9">
+                                            <h:selectOneMenu id="city" class="form-control" value="#{userBean.cityIDFK}" >
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{userBean.cityList}" var="city" itemValue="#{city.cityIDPK}" itemLabel="#{city.cityName}" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                 
+                                    <br/>
+                                      
+                                    
+                                    
+                                     
+
+                                            <div class="row justify-content-end">
+                                                <div class="col-sm-9">
+
+                                                  
+
+                                                    <div>
+                                                        <h:commandButton type="submit" class="btn btn-success" value="Update" action="#{userBean.update_click()}"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                            </h:form>
+            
+                                    </div>
+                                    <!-- end card body -->
+                                </div>
+                                <!-- end card -->
+                            </div>
+                                
+                            
+                        </div>
+
+
+                        <div class="col-lg-4 sidebar-sticky">
+
+                            <!-- Sidebar -->
+                            <div class="sidebar theiaStickySidebar">
+
+                                <div class="widget social-widget">
+                                    <h1>Stay Connected </h1>
+                                    <p>Do you want to be informed everytime with our latest news?</p>
+                                    <ul class="social-share">
+                                        <li>
+                                            <a href="#" class="rss">
+                                                <i class="fa fa-rss"></i>
+                                                <span>345</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="facebook">
+                                                <i class="fa fa-facebook"></i>
+                                                <span>3,460</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="twitter">
+                                                <i class="fa fa-twitter"></i>
+                                                <span>5,600</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="google">
+                                                <i class="fa fa-google-plus"></i>
+                                                <span>659</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="widget slider-widget">
+                                    <h1>Featured Posts</h1>
+                                    <div class="flexslider">
+                                        <ul class="slides">
+                                            <li>
+                                                <img alt="" src="../User/assets/upload/blog/s14.jpg" />
+                                                <div class="slider-caption">
+                                                    <a href="#" class="category category-tech">Tech</a>
+                                                    <h2><a href="single-post.html">Vue js new javascript Framework</a></h2>
+                                                    <ul class="post-tags">
+                                                        <li><i class="lnr lnr-user"></i>by <a href="#">John Doe</a></li>
+                                                        <li><a href="#"><i class="lnr lnr-book"></i><span>23 comments</span></a></li>
+                                                        <li><i class="lnr lnr-eye"></i>872 Views</li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <img alt="" src="upload/blog/s13.jpg" />
+                                                <div class="slider-caption">
+                                                    <a href="#" class="category category-fashion">Fashion</a>
+                                                    <h2><a href="single-post.html">Autumn wear ...</a></h2>
+                                                    <ul class="post-tags">
+                                                        <li><i class="lnr lnr-user"></i>by <a href="#">John Doe</a></li>
+                                                        <li><a href="#"><i class="lnr lnr-book"></i><span>23 comments</span></a></li>
+                                                        <li><i class="lnr lnr-eye"></i>872 Views</li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <img alt="" src="../User/assets/upload/blog/s26.jpg" />
+                                                <div class="slider-caption">
+                                                    <a href="#" class="category category-world">Business</a>
+                                                    <h2><a href="single-post.html">Business title news ...</a></h2>
+                                                    <ul class="post-tags">
+                                                        <li><i class="lnr lnr-user"></i>by <a href="#">John Doe</a></li>
+                                                        <li><a href="#"><i class="lnr lnr-book"></i><span>23 comments</span></a></li>
+                                                        <li><i class="lnr lnr-eye"></i>872 Views</li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+            <!-- footer  ================================================== -->
+            <ui:include src="include/footer.xhtml" /> 
+            <!-- End footer -->
+
+        </div>
+        <!-- End Container -->
+
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="title-section">
+                            <h1>Login</h1>
+                        </div>
+                        <form id="login-form">
+                            <p>Welcome! Login to your account.</p>
+                            <label for="username">Username or Email Address*</label>
+                            <input id="username" name="username" type="text" />
+                            <label for="password">Password*</label>
+                            <input id="password" name="password" type="password" />
+                            <button type="submit" id="submit-register">
+                                <i class="fa fa-paper-plane"></i> Login
+                            </button>
+                        </form>
+                        <p>Don't have account? <a href="register.html">Register Here</a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Login Modal -->
+
+        <ui:include src="include/bottomscripts.xhtml" /> 
+
+    </h:body>
+</html>

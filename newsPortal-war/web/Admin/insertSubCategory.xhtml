@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        
+      
+                 <ui:include src="include/topscript.xhtml" /> 
+            
+
+    </h:head>
+    <h:body>
+
+        <div id="layout-wrapper">
+
+                         <ui:include src="include/header.xhtml" />
+            
+
+            <!-- ========== Left Sidebar Start ========== -->
+            
+                          <ui:include src="include/nav.xhtml" /> 
+         
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content" align="center">
+                    
+                    <h1>Sub Category</h1>
+                    
+                   <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <h:form id="form">
+                                            
+                                            <input type="hidden" id="id"  value="#{subCategoryBean.subCategoryIDPK}"/>
+                                            
+                                            <div class="row mb-4">
+                                                <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">Sub Category : </label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText id="subCategory" class="form-control"  pt:placeholder="Enter Sub Category "  value="#{subCategoryBean.subCategoryName}" required="true" label="Please Enter The SubCategory"/>
+                                                
+                                                <h:panelGrid columns="3">
+                                                        <h:message for="subCategory" style="color:red" />
+                                                    </h:panelGrid>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            
+                                            <div class="row mb-4">
+                                                <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">Category : </label>
+                                                <div class="col-sm-9">
+                                                    <h:selectOneMenu class="form-select" value="#{subCategoryBean.categoryIDFK}" >
+                                                        <f:selectItem itemLabel="Select" />
+                                                        <f:selectItems value="#{subCategoryBean.categoryList}" var="category" itemValue="#{category.categoryIDPK}" itemLabel="#{category.categoryName}" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                            </div>
+                                            
+                                            
+
+                                            <div class="row justify-content-end">
+                                                <div class="col-sm-11">
+
+                                                    <div>
+                                                        <c:if test="#{subCategoryBean.subCategoryIDPK == 0}"> 
+                                                            <h:commandButton class="btn btn-success" value="Insert" action="#{subCategoryBean.insert_click()}"/> &nbsp;&nbsp;&nbsp;
+                                                            <h:commandButton class="btn btn-danger" value="Clear" action="#{subCategoryBean.clear()}"/>
+                                                        </c:if>
+                                                        <c:if test="#{subCategoryBean.subCategoryIDPK != 0}">
+                                                            <h:commandButton class="btn btn-success" value="Update" action="#{subCategoryBean.update_click()}"/>
+                                                        </c:if>    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                    <!-- end card body -->
+                                </div>
+                                <!-- end card -->
+                            </div>
+                    
+                    
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+
+              
+               
+                <!-- end modal -->
+                <!--  start    footer-->
+           
+                     <ui:include src="include/footer.xhtml" /> 
+                 
+              
+              <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+      
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+       
+                    <ui:include src="include/bottomscript.xhtml" /> 
+       
+        
+    </h:body>
+</html>

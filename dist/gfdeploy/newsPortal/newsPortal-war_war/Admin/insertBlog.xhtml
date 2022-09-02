@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        
+      
+                 <ui:include src="include/topscript.xhtml" /> 
+            
+
+    </h:head>
+    <h:body>
+
+        <div id="layout-wrapper">
+
+                         <ui:include src="include/header.xhtml" />
+            
+                      
+
+            <!-- ========== Left Sidebar Start ========== -->
+            
+                          <ui:include src="include/nav.xhtml" /> 
+         
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                    
+                <div class="page-content" align="center">
+                    
+                    <h1 >Blog</h1>
+                    
+                   
+                    <div class="col-xl-9">
+                                <div class="card">
+                                         <div class="card-body">
+
+                                   <h:form id="form" enctype="multipart/form-data">
+                                        
+                                       <h:inputHidden value="#{blogBean.blogIDPK}" />
+                                     
+                                        <div class="row">
+                                            <label  class="col-md-2 col-form-label">Title</label>
+                                            <div class="col-md-10">
+                                                <h:inputText id="blogt"  class="form-control"  value="#{blogBean.blogTitle}"  pt:placeholder="Enter Blog Title"  required="true" label="Please Enter The Blog Title"/>
+                                                <h:panelGrid columns="3">
+                                                        <h:message for="blogt" style="color:red" />
+                                                    </h:panelGrid>
+                                            </div>
+                                        </div>
+                            <br/>
+                            
+                                        <div class="row">
+                                            <label  class="col-md-2 col-form-label">Description</label>
+                                            <div class="col-md-10">
+                                                <p:textEditor secure="false" widgetVar="editor1" value="#{blogBean.blogDescription}" height="250" placeholder="Enter Blog Description" />
+                                             
+                                            </div>
+                                        </div>
+                                     
+                                    <br/>
+                                    
+                                    
+                                    <div class="row">
+                                            <label  class="col-md-2 col-form-label">Author</label>
+                                            <div class="col-md-10">
+                                                <h:inputText class="form-control"  value="#{blogBean.blogAuthor}"  pt:placeholder="Enter Blog Author"
+                                                     />
+                                                
+                                            </div>
+                                        </div>
+                            <br/>
+                                    
+                                  
+                                   
+                            <div class="row">
+                                        <label for="horizontal-firstname-input" class="col-md-2 col-form-label">Category</label>
+                                        <div class="col-sm input-group">
+                                            <h:selectOneMenu class="form-select" value="#{blogBean.categoryIDFK}" >
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{blogBean.categoryList}" var="category" itemValue="#{category.categoryIDPK}" itemLabel="#{category.categoryName}" />
+                                                <f:ajax listener="#{blogBean.fillSubCategory()}" render="subCategory"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                            <br/>
+                                    
+                                     <div class="row">
+                                        <label for="horizontal-firstname-input" class="col-md-2 col-form-label">Sub Category </label>
+                                        <div class="col-sm input-group">
+                                            <h:selectOneMenu id="subCategory" class="form-select" value="#{blogBean.subCategoryIDFK}" required="true" label="Select Category">
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{blogBean.subCategoryList}" var="subcategory" itemValue="#{subcategory.subCategoryIDPK}" itemLabel="#{subcategory.subCategoryName}" />
+                                            </h:selectOneMenu>
+                                             <h:panelGrid columns="3">
+                                                        <h:message for="subCategory" style="color:red" />
+                                                    </h:panelGrid>
+                                        </div>
+                                    </div>
+                            
+                            <br/>
+                            
+                                         
+                           
+                           
+                            
+                            
+                                       <div class="row mb-4">
+                                                <label  class="col-md-2 col-form-label">Blog Image : </label>
+                                                <div class="col">
+                                                    <h:inputFile class="form-control"  value="#{blogBean.file}" />
+                                                </div>
+                                            </div>
+                                       <br/>
+                                       
+                                     <div class="row justify-content-end">
+                                                <div class="col-sm-11">
+
+                                                    <div>
+                                                        <c:if test="#{blogBean.blogIDPK == 0}"> 
+                                                            <h:commandButton class="btn btn-success" value="Insert" action="#{blogBean.insert_click()}"/> &nbsp;&nbsp;&nbsp;
+                                                            <h:commandButton class="btn btn-danger" value="Clear" action="#{blogBean.clear()}"/>
+                                                        </c:if>
+                                                        <c:if test="#{blogBean.blogIDPK != 0}">
+                                                            <h:commandButton class="btn btn-success" value="Update" action="#{blogBean.update_click()}"/>
+                                                        </c:if>    
+                                                    </div>
+                                                </div>
+                                            </div>        
+                                        
+                                        
+                                         </h:form>  
+                                       
+                                                
+                                      
+
+                                    </div>
+                                </div>
+                    </div>
+                  
+                    
+                    
+                    
+                   
+                    
+                    
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+
+              
+               
+                <!-- end modal -->
+                <!--  start    footer-->
+           
+                     <ui:include src="include/footer.xhtml" /> 
+                 
+              
+              <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+      
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+       
+                    <ui:include src="include/bottomscript.xhtml" /> 
+       
+        
+    </h:body>
+</html>
+
+
+
+
+

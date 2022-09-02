@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+       
+
+        <ui:include src="include/topscripts.xhtml" /> 
+        <a href="bloglist.xhtml"></a>
+    </h:head>
+    <h:body>
+        
+        
+<div id="container">
+		<!-- Header  ================================================== -->
+                                            
+                                                <ui:include src="include/header.xhtml" /> 
+                
+		<section id="content-section">
+		<div class="container">
+                                                     
+         <div class="row">
+					
+                                                                                    <div class="col-lg-8">
+						
+						<!-- single-post -->
+						<div class="single-post">
+                                                                                                                                            <h1>#{videoNewsBean.videoNewsTitle}</h1>
+							<ul class="post-tags">
+								<li><i class="lnr lnr-user"></i>by <a href="#">AIRNEWS</a></li>
+                                                                                                                                                                 <li><a href="#"><i class="lnr lnr-calendar-full"></i><span>#{videoNewsBean.videoNewsDate}</span></a></li>
+                                                                                                                                                                 <li><a href="#"><i class="lnr lnr-calendar-full"></i><span>#{videoNewsBean.cityName}</span></a></li>
+							</ul>
+							
+                                                                                                                                            
+                                                                                                                                         
+                                                                                                                                            
+                                                                                                                                             <div class="row">
+                                                                                                                                                    <video  controls="controls" style="height: 450px; width: 730px"> 
+                                                                                                                                                        <source src="/newsPortal-war/upload/newsVideo/#{videoNewsBean.video}" type="video/mp4" />
+                                                                                                                                                    </video>
+                                                                                                                                            </div>
+							
+							
+							<div class="text-boxes">
+								<p>
+                                                                                                                                                            <h:outputText escape="false" value="#{videoNewsBean.videoNewsDescription}" />
+                                                                                                                                                                        
+								</p>
+								
+							</div>
+							 
+                                                                                                                                           
+                                                                       
+							
+						</div>
+						<!-- End single-post -->
+
+						<!-- Advertisement -->
+						 <c:forEach items="#{adsBean.showall()}" begin="4" end="4"  var="item" >
+                                                                                                                            <div class="advertisement">
+                                                                                                                                <a href="#"><img src="/newsPortal-war/upload/adsImage/#{item.adsImage}" alt="" style="height: 80px; width: 620px"/></a>
+                                                                                                                            </div>
+                                                                                                                        </c:forEach>
+						<!-- End Advertisement -->
+						
+						
+
+						
+
+						
+
+
+					</div>
+             
+                                                                                        
+                                                                                    <div class="col-lg-4 sidebar-sticky">
+						
+						<!-- Sidebar -->
+						<div class="sidebar theiaStickySidebar">
+							
+							<div class="widget social-widget">
+								<h1>Stay Connected </h1>
+								<p>Do you want to be informed everytime with our latest news?</p>
+								<ul class="social-share">
+									<li>
+										<a href="#" class="rss">
+											<i class="fa fa-rss"></i>
+											<span>345</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="facebook">
+											<i class="fa fa-facebook"></i>
+											<span>3,460</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="twitter">
+											<i class="fa fa-twitter"></i>
+											<span>5,600</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="google">
+											<i class="fa fa-google-plus"></i>
+											<span>659</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="widget slider-widget">
+                                                                
+								<h1>Featured Posts</h1>
+								<div class="flexslider">
+                                                                                                                                                            
+									<ul class="slides">
+                                                                                                                                                                                                  <c:forEach items="#{newsBean.show_all()}" var="item">
+                                                                                                                                                                                                        <c:if test="#{item.newsType == 4}">
+										<li>
+											<img alt="" src="/newsPortal-war/upload/newsImage/#{item.newsimageCollection[0].image}" />
+											<div class="slider-caption">
+												<a href="#" class="category category-tech">Tech</a>
+                                                                                                                                                                                                                                                  <h2><a href="single-post.html">#{item.newsTitle}</a></h2>
+												<ul class="post-tags">
+													<li><i class="lnr lnr-user"></i>by <a href="#">John Doe</a></li>
+													<li><a href="#"><i class="lnr lnr-book"></i><span>23 comments</span></a></li>
+													<li><i class="lnr lnr-eye"></i>872 Views</li>
+												</ul>
+											</div>
+										</li>
+                                                                                                                                                                                                    </c:if>
+                                                                                                                                                                                                  </c:forEach>
+										
+										
+									</ul>
+								</div>
+							</div>
+							<div class="widget news-widget">
+								<h1>Today Featured</h1>
+								<ul class="small-posts">
+                                                                                                                                                                         <c:forEach items="#{newsBean.show_all()}" var="item" >
+                                                                                                                                                                             <c:if test="#{item.newsType == 7}">
+									<li>
+										<a href="single-post.html">
+											<img src="/newsPortal-war/upload/newsImage/#{item.newsimageCollection[0].image}" alt="" />
+										</a>
+										<div class="post-cont">
+                                                                                                                                                                                                        <h2><a href="single-post.html">#{item.newsTitle}</a></h2>
+											<ul class="post-tags">
+                                                                                                                                                                                                            <li><i class="lnr lnr-calendar-full"></i>by <a href="#">#{item.newsDate}</a></li>
+											</ul>
+										</div>
+									</li>
+                                                                                                                                                                             </c:if>
+                                                                                                                                                                             </c:forEach>
+									
+
+								</ul>
+							</div>
+							
+                                                                                                                                              <c:forEach items="#{adsBean.showall()}" begin="1" end="1"  var="item" >
+							<div class="advertisement">
+								 <a href="#"><img src="/newsPortal-war/upload/adsImage/#{item.adsImage}" alt="" style="height: 250px; width: 300px"/></a>
+							</div>
+                                                                                                                                              </c:forEach>
+
+							
+
+							<div class="widget tags-widget">
+								<h1>Tags</h1>
+								<ul class="tags-list">
+									<li><a href="#">Food</a></li>
+									<li><a href="#">Sport</a></li>
+									<li><a href="#">Lifestyle</a></li>
+									
+								</ul>
+							</div>
+
+						</div>
+
+					</div>
+					
+				</div>
+                                                                        
+           
+                                                         
+                                    </div>
+                                  </section>
+                                                   
+
+		<!-- footer  ================================================== -->
+                                                <ui:include src="include/footer.xhtml" /> 
+		<!-- End footer -->
+
+	</div>
+	<!-- End Container -->
+
+	
+        <ui:include src="include/bottomscripts.xhtml" /> 
+        
+    </h:body>
+</html>
+

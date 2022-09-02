@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+            <ui:include src="include/topscript.xhtml" /> 
+    </h:head>
+    
+    <h:body>
+        <div id="layout-wrapper">
+                <ui:include src="include/header.xhtml" />
+                               
+            <!-- ========== Left Sidebar Start ========== -->
+            <ui:include src="include/nav.xhtml" /> 
+            <!-- Left Sidebar End -->
+           
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                    
+                <div class="page-content" align="center">
+                    
+                    <h1 >News Image</h1>
+                    
+                   
+                    <div class="col-xl-6">
+                                <div class="card">
+                                         <div class="card-body">
+
+                                   <h:form id="form" enctype="multipart/form-data">
+                                        
+                                       <h:inputHidden value="#{newsImageBean.imageIDPK}" />
+                                                                           
+                                       <div class="row mb-4">
+                                                <label  class="col-sm-3 col-form-label">News Image : </label>
+                                                <div class="col-sm-9">
+                                                    <h:inputFile class="form-control"  value="#{newsImageBean.file}" />
+                                                </div>
+                                            </div>
+                                       <br/>
+                                    
+                                    
+                                 
+                                    
+                                                
+                                       
+                            
+                            <div class="row mb-4">
+                                                <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">News : </label>
+                                                <div class="col-sm-9">
+                                                    <h:selectOneMenu class="form-select" value="#{newsImageBean.newsIDFK}" >
+                                                        <f:selectItem itemLabel="Select" />
+                                                        <f:selectItems value="#{newsImageBean.newsList}" var="newsImage" itemValue="#{newsImage.newsIDPK}" itemLabel="#{newsImage.newsTitle}" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                            </div>
+                            
+                                        
+                                       
+                    
+                                        
+                            
+                                        
+                            
+                                        
+                                                    <div>
+                                                        <h:commandButton class="btn btn-success" id="btn_insert"  action="#{newsImageBean.insert_click()}" value="Insert"/>&nbsp;
+                                                        <div class="vr"></div>
+                                                        &nbsp;
+                                                        <h:commandButton class="btn btn-danger" id="btn_reset"  action="#{newsImageBean.clear()}" value="Reset"/>
+<!--                                                        <button type="submit"  action="" value="insert" class="btn btn-primary w-md">Submit</button>-->
+                                                    </div>
+                                     
+                                        
+                                         </h:form>  
+                                       
+                                                
+                                      
+
+                                    </div>
+                                </div>
+                    </div>
+                  
+                    
+                    
+                    
+                   
+                    
+                    
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+
+              
+               
+                <!-- end modal -->
+                <!--  start    footer-->
+           
+                     <ui:include src="include/footer.xhtml" /> 
+                 
+              
+              <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+      
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+       
+                    <ui:include src="include/bottomscript.xhtml" /> 
+       
+        
+    </h:body>
+</html>
+
+
+
+
+

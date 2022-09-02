@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>           
+        
+      
+                 <ui:include src="include/topscript.xhtml" /> 
+                         
+    </h:head>
+    <h:body>
+
+        <div id="layout-wrapper">
+
+                         <ui:include src="include/header.xhtml" />
+            
+                      
+
+            <!-- ========== Left Sidebar Start ========== -->
+            
+                          <ui:include src="include/nav.xhtml" /> 
+         
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                    
+                <div class="page-content" align="center">
+                    
+                    <h1 >Advertisement</h1>
+                    
+                   
+                    <div class="col-xl-8">
+                                <div class="card">
+                                         <div class="card-body">
+                           
+                                       
+                         <h:form id="form" enctype="multipart/form-data">
+                                        
+                            <h:inputHidden value="#{adsBean.adsIDPK}" />
+                                     
+                                        <div class="mb-3 row">
+                                            <label  class="col-md-2 col-form-label">Title</label>
+                                            <div class="col-md-10">
+                                                <h:inputText  id="adstitle" class="form-control"  value="#{adsBean.adstitle}"  pt:placeholder="Enter Advertisement Title"  required="true" label="Please Enter Title"/>
+                                                  <h:panelGrid columns="3">
+                                                        <h:message for="adstitle" style="color:red" />
+                                                    </h:panelGrid>
+                                            </div>
+                                        </div>
+                            <br/>
+                            
+                            
+                                        <div class="mb-3 row">
+                                            <label  class="col-md-2 col-form-label">Description</label>
+                                            <div class="col-md-10">
+                                                <p:textEditor secure="false" widgetVar="editor1" value="#{adsBean.adsDescription}" style="height: 300px; width: 550px" placeholder="Enter Ads Description" />
+                                                
+                                            </div>
+                                        </div>
+                                     
+                                    <br/>
+                                     
+                                         
+
+                            <br/>
+                            
+                                        <div class="mb-3 row">
+                                            <label for="example-date-input" class="col-md-2 col-form-label">Image</label>
+                                            <div class="col-md-10">
+                                                <h:inputFile class="form-control" id="icon" value="#{adsBean.file}"/>
+                                                 
+                                            </div>
+                                        </div>
+                                       
+                            <br/>
+                                        
+                            <c:if test="#{adsBean.adsIDPK == 0}"> 
+                                <h:commandButton class="btn btn-success" value="Insert" action="#{adsBean.insert_click()}"/> &nbsp;&nbsp;&nbsp;
+                                <h:commandButton class="btn btn-danger" value="Clear" action="#{adsBean.clear()}"/>
+                                                        </c:if>
+                            <c:if test="#{adsBean.adsIDPK != 0}">
+                                <h:commandButton class="btn btn-success" value="Update" action="#{adsBean.update_click()}"/>
+                                                        </c:if>   
+                                        
+                                         </h:form>  
+                                      
+
+                                    </div>
+                                </div>
+                    </div>
+                  
+                    
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+
+              
+               
+                <!-- end modal -->
+                <!--  start    footer-->
+           
+                     <ui:include src="include/footer.xhtml" /> 
+                 
+              
+              <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+      
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+       
+                    <ui:include src="include/bottomscript.xhtml" /> 
+                    
+    </h:body>
+</html>
+
+
+

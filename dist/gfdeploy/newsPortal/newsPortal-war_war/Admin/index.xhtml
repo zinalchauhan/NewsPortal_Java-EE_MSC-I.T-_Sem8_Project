@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        
+      
+        <ui:include src="include/topscript.xhtml" /> 
+            
+
+    </h:head>
+    <h:body>
+
+        <div id="layout-wrapper">
+
+                         <ui:include src="include/header.xhtml" />
+            
+
+            <!-- ========== Left Sidebar Start ========== -->
+            
+                          <ui:include src="include/nav.xhtml" /> 
+         
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                   
+                    
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
+
+                                   
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-xl-7">
+                                <div class="card overflow-hidden">
+                                    <div class="bg-primary bg-soft">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <div class="text-primary p-3">
+                                                    <h5 class="text-primary">Welcome Back !</h5>
+                                                    <p>Air News Dashboard</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-7 align-self-end">
+                                                <img src="assets/images/profile-img.png" alt="" class="img-fluid"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="avatar-md profile-user-wid mb-4">
+                                                    <img src="/newsPortal-war/upload/userImage/#{session.getAttribute('userImage')}" height="250px" width="250px" alt="" class=" rounded-circle"/>
+                                                </div>
+                                                <b><u><p style="margin-left: 300px; margin-top: 100px;" class="font-size-15 text-truncate heading3"> #{session.getAttribute("userName")} </p></u></b>
+                                                <p style="margin-left: 300px;" class="font-size-15 text-truncate"> User Type : <b>#{session.getAttribute("userType")}</b> </p>
+                                                 <p style="margin-left: 300px;" class="font-size-15 text-truncate"> Mobile Number : #{session.getAttribute("userMobile")}</p>
+                                                 <p style="margin-left: 300px;" class="font-size-15 text-truncate"> Email : #{session.getAttribute("userEmail")}</p>
+                                                 <p style="margin-left: 300px;" class="font-size-15 text-truncate"> Mobile Number : #{session.getAttribute("userMobile")}</p>
+                                                 <p style="margin-left: 300px;" class="font-size-15 text-truncate"> Address : #{session.getAttribute("userAddress")} , #{session.getAttribute("city")} , #{session.getAttribute("state")}</p>
+                                                 <p style="margin-left: 300px;" class="font-size-15 text-truncate"> Gender : #{session.getAttribute("userGender")}</p>
+                                                 
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <p class="text-muted fw-medium">Total Users</p>
+                                                        <h4 class="mb-0">#{userBean.showall().size()}</h4>
+                                                    </div>
+
+                                                    <div class="flex-shrink-0 align-self-center">
+                                                        <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+                                                            <span class="avatar-title">
+                                                                <i class="bx bx-user font-size-24"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <p class="text-muted fw-medium">Total News</p>
+                                                        <h4 class="mb-0">#{newsBean.show_all().size()}</h4>
+                                                    </div>
+
+                                                    <div class="flex-shrink-0 align-self-center ">
+                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                                <i class="fas fa-newspaper font-size-24"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <p class="text-muted fw-medium">Total Podcast</p>
+                                                        <h4 class="mb-0">#{podcastBean.showall().size()}</h4>
+                                                    </div>
+
+                                                    <div class="flex-shrink-0 align-self-center">
+                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                                <i class="dripicons-broadcast font-size-24"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <p class="text-muted fw-medium">Total Blogs</p>
+                                                        <h4 class="mb-0">#{blogBean.showall().size()}</h4>
+                                                    </div>
+
+                                                    <div class="flex-shrink-0 align-self-center">
+                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                                <i class=" fab fa-blogger font-size-24"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <p class="text-muted fw-medium">Total Debate</p>
+                                                        <h4 class="mb-0">#{debateBean.showall().size()}</h4>
+                                                    </div>
+
+                                                    <div class="flex-shrink-0 align-self-center">
+                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                                <i class="fas fa-comments font-size-24"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <p class="text-muted fw-medium">Total Video News</p>
+                                                        <h4 class="mb-0">#{videoNewsBean.showall().size()}</h4>
+                                                    </div>
+
+                                                    <div class="flex-shrink-0 align-self-center">
+                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                                <i class="fas fa-video  font-size-24"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end row -->
+
+                                
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                    </div>
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+
+              
+               
+                <!-- end modal -->
+                <!--  start    footer-->
+           
+                     <ui:include src="include/footer.xhtml" /> 
+                 
+              
+              <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+      
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+       
+        <ui:include src="include/bottomscript.xhtml" /> 
+       
+        
+    </h:body>
+</html>
+

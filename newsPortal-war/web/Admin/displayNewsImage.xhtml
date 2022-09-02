@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+
+        <ui:include src="include/topscript.xhtml" /> 
+
+
+    </h:head>
+    <h:body>
+
+        <div id="layout-wrapper">
+
+            <ui:include src="include/header.xhtml" />
+
+
+            <!-- ========== Left Sidebar Start ========== -->
+
+            <ui:include src="include/nav.xhtml" /> 
+
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content" align="center">
+
+                    <h1> News Image </h1> <br/>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <h:form id="form" enctype="multipart/form-data">
+                                
+                                 <button type="button" style="width: 50%" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add Image</button>
+                               <br/><br/> <br/>
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Add News Image</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                           
+                                                                <div class="mb-3">
+                                                                    <h:inputFile pt:multiple="multiple" class="form-control"  value="#{newsImageBean.file}" />
+                                                                </div>
+                                                          
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            
+                                                            <h:commandButton class="btn btn-success" value="Insert" action="#{newsImageBean.insert_click()}"/>
+                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                <div class="row">
+                                    <ui:repeat value="#{newsImageBean.showAllNewsImage()}" var="item">
+
+                                        <div class="col-6">
+                                            <img src="http://127.0.0.1:8887/newsImage/#{item.image}" style="height: 200px; width: 350px"/> <br/><br/>
+                                            <h:commandLink class="btn btn-danger btn-sm"  id="btn_delete"  action="#{newsImageBean.delete_click(item.imageIDPK)}">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </h:commandLink>
+                                            <br/><br/>
+                                        </div>
+
+                                    </ui:repeat>
+                                </div>
+                            </h:form>
+                        </div>
+
+                    </div>
+
+
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+
+
+
+
+                <!-- end modal -->
+                <!--  start    footer-->
+
+                <ui:include src="include/footer.xhtml" /> 
+
+
+                <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+
+        <ui:include src="include/bottomscript.xhtml" /> 
+
+
+    </h:body>
+</html>
+
+

@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        
+      
+                 <ui:include src="include/topscript.xhtml" /> 
+            
+
+    </h:head>
+    <h:body>
+
+        <div id="layout-wrapper">
+
+                         <ui:include src="include/header.xhtml" />
+            
+
+            <!-- ========== Left Sidebar Start ========== -->
+            
+                          <ui:include src="include/nav.xhtml" /> 
+         
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content" align="center">
+                    
+                    <h1>User</h1>
+                    
+                   <div class="col-xl-8">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <h:form id="form" enctype="multipart/form-data">
+                                            
+                                            <input type="hidden" id="id"  value="#{userBean.userIDPK}"/>
+                                            
+                                            <div class="row mb-4">
+                                                <label  class="col-sm-3 col-form-label">User Name : </label>
+                                                <div class="col-sm-9">
+                                                  
+                                                    <h:inputText class="form-control" id="UserName"  pt:placeholder="Enter User Name "  value="#{userBean.userName}"   required="true" label="Please Enter The Name" >
+                                                        
+                                                    </h:inputText>
+                                                      <h:panelGrid columns="3">
+                                                        <h:message for="UserName" style="color:red" />
+                                                    </h:panelGrid>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row mb-4">
+                                                <label  id="Email" class="col-sm-3 col-form-label">User Email : </label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText id="Email" class="form-control"  pt:placeholder="Enter User Email "  value="#{userBean.userEmail}" required="true" label="Please Enter The Email">
+                                                        
+                                                    </h:inputText>
+                                                    <h:panelGrid columns="3">
+                                                        <h:message for="Email" style="color:red" />
+                                                    </h:panelGrid>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row mb-4">
+                                                <label  class="col-sm-3 col-form-label"> Mobile Number : </label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText class="form-control"  pt:placeholder="Enter Mobile Number "  value="#{userBean.userMobile}" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row mb-4">
+                                                <label  class="col-sm-3 col-form-label">User Gender : </label>
+                                                <div class="col-sm-9">
+                                                    <h:selectOneRadio value="#{userBean.userGender}">
+                                                        <f:selectItem itemLabel="Male" itemValue="Male" />
+                                                        <f:selectItem itemLabel="Female" itemValue="Female" />
+                                                    </h:selectOneRadio>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row mb-4">
+                                                <label  class="col-sm-3 col-form-label">User Password : </label>
+                                                <div class="col-sm-9">
+                                                    <h:inputText id="Password" pt:type="password" class="form-control" pt:placeholder="Enter User Password "  value="#{userBean.userPassword}" required="true" label="Please Enter The Password"/>
+                                                     <h:panelGrid columns="3">
+                                                        <h:message for="Password" style="color:red" />
+                                                    </h:panelGrid>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row mb-4">
+                                                <label  class="col-sm-3 col-form-label">User Image : </label>
+                                                <div class="col-sm-9">
+                                                    <h:inputFile class="form-control" id="categoryIcon" value="#{userBean.file}"/>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row mb-4">
+                                                <label  class="col-sm-3 col-form-label">User Address : </label>
+                                                <div class="col-sm-9">
+                                                    <h:inputTextarea  pt:placeholder="Enter User Address "  class="form-control" rows="5" cols="60" value="#{userBean.userAddress}" />
+                                                </div>
+                                            </div>
+                                            
+                                        <div class="row mb-4">
+                                        <label  class="col-sm-3 col-form-label">State : </label>
+                                        <div class="col-sm-9">
+                                            <h:selectOneMenu class="form-select" value="#{userBean.stateIDFK}" >
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{userBean.stateList}" var="state" itemValue="#{state.stateIDPK}" itemLabel="#{state.stateName}" />
+                                                <f:ajax listener="#{userBean.fillCity()}" render="city"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                   
+                                    
+                                     <div class="row mb-4">
+                                        <label  class="col-sm-3 col-form-label">City : </label>
+                                        <div class="col-sm-9">
+                                            <h:selectOneMenu id="city" class="form-select" value="#{userBean.cityIDFK}" >
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{userBean.cityList}" var="city" itemValue="#{city.cityIDPK}" itemLabel="#{city.cityName}" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                            
+                                            <div class="row mb-4">
+                                                <label class="col-sm-3 col-form-label">User Type : </label>
+                                                <div class="col-sm-9">
+                                                    <h:selectOneMenu class="form-select" value="#{userBean.userType}">
+                                                        <f:selectItem itemLabel="Select" />
+                                                        
+                                                        <f:selectItem itemLabel="Editor" itemValue="editor" />
+                                                        <f:selectItem itemLabel="Reporter" itemValue="reporter" />
+                                                    </h:selectOneMenu>
+                                            </div>
+                                            </div>
+                      
+                                            <div class="row justify-content-end">
+                                                <div class="col-sm-11">
+
+                                                    <div>
+                                                        <c:if test="#{userBean.userIDPK == 0}"> 
+                                                            <h:commandButton class="btn btn-success" value="Insert" action="#{userBean.insert_user()}"/> &nbsp;&nbsp;&nbsp;
+                                                            <h:commandButton class="btn btn-danger" value="Clear" action="#{userBean.clear()}"/>
+                                                        </c:if>
+                                                        <c:if test="#{userBean.userIDPK != 0}">
+                                                            <h:commandButton class="btn btn-success" value="Update" action="#{userBean.update_click()}"/>
+                                                        </c:if>    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                    <!-- end card body -->
+                                </div>
+                                <!-- end card -->
+                            </div>
+                    
+                    
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+
+              
+               
+                <!-- end modal -->
+                <!--  start    footer-->
+           
+                     <ui:include src="include/footer.xhtml" /> 
+                 
+              
+              <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+      
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+       
+                    <ui:include src="include/bottomscript.xhtml" /> 
+       
+        
+    </h:body>
+</html>

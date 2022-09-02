@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+
+        <ui:include src="include/topscripts.xhtml" /> 
+        
+    </h:head>
+    <h:body>
+        
+        
+<div id="container">
+		<!-- Header  ================================================== -->
+                                            
+                                                <ui:include src="include/header.xhtml" /> 
+                
+		<section id="content-section">
+			<div class="container">
+                                                        <div class="row">
+                                                            
+                                                           
+                                                              
+					
+                                                                             
+                                                                    
+                                                                                    
+                                                                                <div class="widget tabs-widget col-lg-12">
+								<nav class="nav nav-tabs" id="myTab" role="tablist" >
+									<a class="nav-item nav-link active col-lg-4" id="nav-popular-tab" data-toggle="tab" href="#nav-popular" role="tab" aria-controls="nav-popular" aria-selected="true">Current Debate</a>
+									<a class="nav-item nav-link col-lg-4" id="nav-recent-tab" data-toggle="tab" href="#nav-recent" role="tab" aria-controls="nav-recent" aria-selected="false">Previous Debate</a>
+									<a class="nav-item nav-link col-lg-4" id="nav-comments-tab" data-toggle="tab" href="#nav-comments" role="tab" aria-controls="nav-comments" aria-selected="false">Upcoming Debate</a>
+								</nav>
+								<div class="tab-content" id="nav-tabContent">
+									<div class="tab-pane fade show active" id="nav-popular" role="tabpanel" aria-labelledby="nav-popular-tab">
+										<ul class="small-posts">
+                                                                                                                                                                                                            <c:forEach items="#{debateBean.showall()}" var="item">
+                                                                                                                                                                                                                                <c:if test="#{debateBean.checkDate(item.debateStartDate,item.debateEndDate,'current')}">  
+                                                                                                                                                                                                                                    <div class="news-post article-post">
+                                                                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                                                                    <div class="col-lg-4">
+                                                                                                                                                                                                                                                            <div class="post-image">
+                                                                                                                                                                                                                                                                    <a href="single-post-2.html">
+                                                                                                                                                                                                                                                                            <img src="/newsPortal-war/upload/debateImage/#{item.debateImage}" alt="" />
+                                                                                                                                                                                                                                                                    </a>
+                                                                                                                                                                                                                                                                   <a class="category category-travel" href="#">#{item.subCategoryIDFK.subCategoryName}</a>
+                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                    <div class="col-sm-8">
+                                                                                                                                                                                                                                                                           <h2><b class="text-uppercase" style="font-size: 25px;" >#{item.debateTitle}</b></h2> <br/>
+                                                                                                                                                                                                                                                                           <ul class="post-tags" >
+                                                                                                                                                                                                                                                                               <b><i class="lnr lnr-calendar-full" style="font-size: 15px; color: #000; "></i></b>&nbsp;&nbsp;
+                                                                                                                                                                                                                                                                               <li style="font-size: 15px;"><b>Start Date :  </b>#{item.debateStartDate}</li>
+                                                                                                                                                                                                                                                                                   <li style="font-size: 15px;"> <b>End Date : </b> #{item.debateEndDate}</li>
+
+
+                                                                                                                                                                                                                                                                            </ul>  
+                                                                                                                                                                                                                                                                            <div align="right">
+                                                                                                                                                                                                                                                                                <h:form>
+                                                                                                                                                                                                                                                                                    <h:commandLink class="btn btn-info read-more "  id="btn_edit"  action="#{debateBean.search_singleDebate(item.debateIDPK)}" ><b>Read more </b> <i class="fa fa-arrow-right" aria-hidden="true"></i></h:commandLink>
+
+                                                                                                                                                                                                                                                                                                 </h:form>   
+                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                        </c:if>
+                                                                                                                                                                                                                                                                     </c:forEach>
+											
+										</ul>
+									</div>
+									<div class="tab-pane fade" id="nav-recent" role="tabpanel" aria-labelledby="nav-recent-tab">
+										<ul class="small-posts">
+                                                                                                                                                                                                            <c:forEach items="#{debateBean.showall()}" var="item">
+                                                                                                                                                                                                                                <c:if test="#{debateBean.checkDate(item.debateStartDate,item.debateEndDate,'previous')}">  
+                                                                                                                                                                                                                                    <div class="news-post article-post">
+                                                                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                                                                    <div class="col-lg-4">
+                                                                                                                                                                                                                                                            <div class="post-image">
+                                                                                                                                                                                                                                                                    <a href="single-post-2.html">
+                                                                                                                                                                                                                                                                            <img src="/newsPortal-war/upload/debateImage/#{item.debateImage}" alt="" />
+                                                                                                                                                                                                                                                                    </a>
+                                                                                                                                                                                                                                                                   <a class="category category-travel" href="#">#{item.subCategoryIDFK.subCategoryName}</a>
+                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                    <div class="col-sm-8">
+                                                                                                                                                                                                                                                                           <h2><b class="text-uppercase" style="font-size: 25px;" >#{item.debateTitle}</b></h2> <br/>
+                                                                                                                                                                                                                                                                           <ul class="post-tags" >
+                                                                                                                                                                                                                                                                               <b><i class="lnr lnr-calendar-full" style="font-size: 15px; color: #000; "></i></b>&nbsp;&nbsp;
+                                                                                                                                                                                                                                                                               <li style="font-size: 15px;"><b>Start Date :  </b>#{item.debateStartDate}</li>
+                                                                                                                                                                                                                                                                                   <li style="font-size: 15px;"> <b>End Date : </b> #{item.debateEndDate}</li>
+
+
+                                                                                                                                                                                                                                                                            </ul>  
+                                                                                                                                                                                                                                                                            <div align="right">
+                                                                                                                                                                                                                                                                                <h:form>
+                                                                                                                                                                                                                                                                                    <h:commandLink class="btn btn-info read-more "  id="btn_edit"  action="#{debateBean.search_singleDebate(item.debateIDPK)}" ><b>Read more </b> <i class="fa fa-arrow-right" aria-hidden="true"></i></h:commandLink>
+
+                                                                                                                                                                                                                                                                                                 </h:form>   
+                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                        </c:if>
+                                                                                                                                                                                                                                                                     </c:forEach>
+											
+										</ul>
+									</div>
+									<div class="tab-pane fade" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
+										<ul class="small-posts">
+											<c:forEach items="#{debateBean.showall()}" var="item">
+                                                                                                                                                                                                                                <c:if test="#{debateBean.checkDate(item.debateStartDate,item.debateEndDate,'upcoming')}">  
+                                                                                                                                                                                                                                    <div class="news-post article-post">
+                                                                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                                                                    <div class="col-lg-4">
+                                                                                                                                                                                                                                                            <div class="post-image">
+                                                                                                                                                                                                                                                                    <a href="single-post-2.html">
+                                                                                                                                                                                                                                                                            <img src="/newsPortal-war/upload/debateImage/#{item.debateImage}" alt="" />
+                                                                                                                                                                                                                                                                    </a>
+                                                                                                                                                                                                                                                                   <a class="category category-travel" href="#">#{item.subCategoryIDFK.subCategoryName}</a>
+                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                    <div class="col-sm-8">
+                                                                                                                                                                                                                                                                           <h2><b class="text-uppercase" style="font-size: 25px;" >#{item.debateTitle}</b></h2> <br/>
+                                                                                                                                                                                                                                                                           <ul class="post-tags" >
+                                                                                                                                                                                                                                                                               <b><i class="lnr lnr-calendar-full" style="font-size: 15px; color: #000; "></i></b>&nbsp;&nbsp;
+                                                                                                                                                                                                                                                                               <li style="font-size: 15px;"><b>Start Date :  </b>#{item.debateStartDate}</li>
+                                                                                                                                                                                                                                                                                   <li style="font-size: 15px;"> <b>End Date : </b> #{item.debateEndDate}</li>
+
+
+                                                                                                                                                                                                                                                                            </ul>  
+                                                                                                                                                                                                                                                                            <div align="right">
+                                                                                                                                                                                                                                                                                <h:form>
+                                                                                                                                                                                                                                                                                    <h:commandLink class="btn btn-info read-more "  id="btn_edit"  action="#{debateBean.search_singleDebate(item.debateIDPK)}" ><b>Read more </b> <i class="fa fa-arrow-right" aria-hidden="true"></i></h:commandLink>
+
+                                                                                                                                                                                                                                                                                                 </h:form>   
+                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                        </c:if>
+                                                                                                                                                                                                                                                                     </c:forEach>
+											
+										</ul>
+									</div>
+								</div>
+							</div>
+			
+				</div>
+                                                    </div>
+                                  </section>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+
+		<!-- footer  ================================================== -->
+                                                <ui:include src="include/footer.xhtml" /> 
+		<!-- End footer -->
+
+	</div>
+	<!-- End Container -->
+
+	<!-- Login Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <div class="title-section">
+	        	<h1>Login</h1>
+	        </div>
+			<form id="login-form">
+				<p>Welcome! Login to your account.</p>
+				<label for="username">Username or Email Address*</label>
+				<input id="username" name="username" type="text" />
+				<label for="password">Password*</label>
+				<input id="password" name="password" type="password" />
+				<button type="submit" id="submit-register">
+					<i class="fa fa-paper-plane"></i> Login
+				</button>
+			</form>
+	      	<p>Don't have account? <a href="register.html">Register Here</a></p>
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- End Login Modal -->
+
+        <ui:include src="include/bottomscripts.xhtml" /> 
+        
+    </h:body>
+</html>
+

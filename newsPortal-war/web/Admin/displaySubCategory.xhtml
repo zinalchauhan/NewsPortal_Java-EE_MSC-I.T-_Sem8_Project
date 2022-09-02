@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+
+        <ui:include src="include/topscript.xhtml" /> 
+
+
+    </h:head>
+    <h:body>
+
+        <div id="layout-wrapper">
+
+            <ui:include src="include/header.xhtml" />
+
+
+            <!-- ========== Left Sidebar Start ========== -->
+
+            <ui:include src="include/nav.xhtml" /> 
+
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content" align="center">
+
+                    <h1>Sub Category</h1>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <h:form>
+                                <h:dataTable value="#{subCategoryBean.showall()}" var="item" class="table mb-0 table-bordered table-striped table-light" headerClass="table-dark">
+                                    <h:column>
+                                        <f:facet name="header" > # </f:facet>
+                                        <b>#{c=c+1}</b>
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header" >Sub Category Name</f:facet>
+                                            #{item.subCategoryName}
+                                    </h:column>
+
+                                    <h:column>  
+                                        <f:facet name="header" >Category Name</f:facet>
+                                        #{item.categoryIDFK.categoryName}
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header" >Operation</f:facet>
+                                        <h:commandLink class="btn  btn-sm btn-success"  id="btn_edit"  action="#{subCategoryBean.search_click(item.subCategoryIDPK)}">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        </h:commandLink>                                        
+ 
+                                        &nbsp;&nbsp;&nbsp;
+                                        <h:commandLink class="btn  btn-sm btn-danger"  id="btn_delete"  action="#{subCategoryBean.delete_click(item.subCategoryIDPK)}">
+                                        <i class="fas fa-trash-alt"></i>
+                                        </h:commandLink>                                        
+
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                        </div>
+
+                    </div>
+
+
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+
+
+
+
+                <!-- end modal -->
+                <!--  start    footer-->
+
+                <ui:include src="include/footer.xhtml" /> 
+
+
+                <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+
+        <ui:include src="include/bottomscript.xhtml" /> 
+
+
+    </h:body>
+</html>
+
+
+
+

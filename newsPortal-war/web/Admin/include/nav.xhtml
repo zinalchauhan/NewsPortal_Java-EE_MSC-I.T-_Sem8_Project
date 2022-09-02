@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        
+    </h:head>
+    <h:body a:data-sidebar="dark">
+     <div class="vertical-menu">
+
+         <div class="h-100" style="height: 100% ; overflow:hidden scroll;">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled mm-show" id="side-menu">
+                           
+                              <li class="menu-title" key="t-apps">Menu</li>
+
+                              <li>
+                                
+                                    <a href="index.xhtml" key="t-tui-calendar"><i class="bx bx-home-circle"></i>
+                                    <span key="t-dashboards">Dashboard</span></a>
+                                
+                            </li>
+                           
+                            
+                             <c:if test="#{session.getAttribute('userType') == 'admin'}">
+                            <li class="menu-title" key="t-apps">User</li>
+
+                              <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class=" bx bxs-user"></i>
+                                    <span key="t-dashboards">User</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="insertUser.xhtml" key="t-tui-calendar">Insert User</a></li>
+                                    <li><a href="displayUser.xhtml" key="t-full-calendar">Display User</a></li>
+                                </ul>
+                            </li>
+                             </c:if>
+
+                            <c:if test="#{session.getAttribute('userType') == 'admin' || session.getAttribute('userType') == 'editor' }">
+
+                            <li class="menu-title" key="t-apps">Category</li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="dripicons-menu"></i>
+                                    <span key="t-dashboards">Category</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="insertCategory.xhtml" key="t-tui-calendar">Insert Category</a></li>
+                                    <li><a href="displayCategory.xhtml" key="t-full-calendar">Display Category</a></li>
+                                </ul>
+                            </li>
+                          
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="dripicons-checklist"></i>
+                                    <span key="t-dashboards">Sub Category</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="insertSubCategory.xhtml" key="t-tui-calendar">Insert Sub Category</a></li>
+                                    <li><a href="displaySubCategory.xhtml" key="t-full-calendar">Display Sub Category</a></li>
+                                </ul>
+                            </li>
+                            </c:if>
+                            
+                            <li class="menu-title" key="t-apps">Advertisement | Jobs</li>
+
+                              <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="  bx bxs-detail "></i>
+                                    <span key="t-dashboards">Advertisement</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="insertAdvertisement.xhtml" key="t-tui-calendar">Insert Advertisement</a></li>
+                                    <li><a href="displayAdvertisement.xhtml" key="t-full-calendar">Display Advertisement</a></li>
+                                </ul>
+                            </li>
+                     
+                     
+                     <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="  bx bx-notepad  "></i>
+                                    <span key="t-dashboards">Jobs</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="insertJob.xhtml" key="t-tui-calendar">Insert Jobs</a></li>
+                                    <li><a href="displayJob.xhtml" key="t-full-calendar">Display Jobs</a></li>
+                                </ul>
+                            </li>
+                          
+                          
+                     <li class="menu-title" key="t-apps">News</li>
+
+                              <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class=" fas fa-newspaper  "></i>
+                                    <span key="t-dashboards">News</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="insertNews.xhtml" key="t-tui-calendar">Insert News</a></li>
+                                    <li><a href="displayNews.xhtml" key="t-full-calendar">Display News</a></li>
+                                </ul>
+                            </li>
+                     
+                     
+                     <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class=" fas fa-video "></i>
+                                    <span key="t-dashboards">Video News</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="insertVideoNews.xhtml" key="t-tui-calendar">Insert Video News</a></li>
+                                    <li><a href="displayVideoNews.xhtml" key="t-full-calendar">Display Video News</a></li>
+                                </ul>
+                            </li>
+
+                      <c:if test="#{session.getAttribute('userType')=='admin' || session.getAttribute('userType')=='editor'}">
+
+                      <li class="menu-title" key="t-apps">Blog</li>
+
+                              <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class=" fab fa-blogger "></i>
+                                    <span key="t-dashboards">Blog</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="insertBlog.xhtml" key="t-tui-calendar">Insert Blog</a></li>
+                                    <li><a href="displayBlog.xhtml" key="t-full-calendar">Display Blog</a></li>
+                                </ul>
+                            </li>
+                     
+                      
+                        <li class="menu-title" key="t-apps">Podcast</li>
+
+                              <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class=" dripicons-broadcast "></i>
+                                    <span key="t-dashboards">Podcast</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="insertPodcast.xhtml" key="t-tui-calendar">Insert Podcast</a></li>
+                                    <li><a href="displayPodcast.xhtml" key="t-full-calendar">Display Podcast</a></li>
+                                </ul>
+                            </li>
+                      </c:if>
+                        
+                          <li class="menu-title" key="t-apps">Debate</li>
+
+                              <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class=" fas fa-comments "></i>
+                                    <span key="t-dashboards">Debate</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="insertDebate.xhtml" key="t-tui-calendar">Insert Debate</a></li>
+                                    <li><a href="displayDebate.xhtml" key="t-full-calendar">Display Debate</a></li>
+                                </ul>
+                            </li> 
+                     
+                     
+                    
+
+
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+
+    </h:body>
+</html>
+

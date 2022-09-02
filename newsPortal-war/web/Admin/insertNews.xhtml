@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        
+    
+                 <ui:include src="include/topscript.xhtml" /> 
+            
+
+    </h:head>
+    <h:body>
+
+        <div id="layout-wrapper">
+
+                         <ui:include src="include/header.xhtml" />
+            
+                      
+
+            <!-- ========== Left Sidebar Start ========== -->
+            
+                          <ui:include src="include/nav.xhtml" /> 
+         
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                    
+                <div class="page-content" align="center">
+                    
+                    <h1 >News</h1>
+                    
+                   
+                    <div class="col-xl-9">
+                                <div class="card">
+                                         <div class="card-body">
+
+                                   <h:form id="form" enctype="multipart/form-data">
+                                        
+                                       <h:inputHidden value="#{newsBean.newsIDPK}" />
+                                     
+                                        <div class="mb-3 row">
+                                            <label  class="col-md-2 col-form-label">Title</label>
+                                            <div class="col-md-10">
+                                                <h:inputText  id="newst" class="form-control"  value="#{newsBean.newsTitle}"  a:placeholder="Enter News Title"  required="true" label="Please Enter The News Title"/>
+                                                 <h:panelGrid columns="3">
+                                                        <h:message for="newst" style="color:red" />
+                                                    </h:panelGrid>
+                                            </div>
+                                        </div>
+                            <br/>
+                            
+                                          <div class="mb-3 row">
+                                            <label  class="col-md-2 col-form-label">Subtitle</label>
+                                            <div class="col-md-10">
+                                                <h:inputText id="newssub" class="form-control"  value="#{newsBean.newssubTitle}"  a:placeholder="Enter News Subtitle" required="true" label="Please Enter The News Subtitle" />
+                                                  <h:panelGrid columns="3">
+                                                        <h:message for="newssub" style="color:red" />
+                                                    </h:panelGrid>
+                                            </div>
+                                        </div>
+                            <br/>
+                            
+                            
+                                        <div class="mb-3 row">
+                                            <label  class="col-md-2 col-form-label">Description</label>
+                                            <div class="col-md-10">
+                                                <p:textEditor secure="false" widgetVar="editor1" value="#{newsBean.newsDescription}" height="250" placeholder="Enter News Description" />
+                                            </div>
+                                        </div>
+                            
+                                        <div class="row">
+                                            <c:if test="#{newsBean.newsIDPK == 0}"> 
+                                                  <label  class="col-md-2 col-form-label">News Image </label>
+                                                <div class="col-sm input-group">
+                                                    <h:inputFile a:multiple="multiple" class="form-control"  value="#{newsBean.file}" />
+                                                </div>          
+                                            </c:if>
+                                                
+                                            </div>
+
+                            <br/>
+                            
+                            <div class="row ">
+                                        <label for="horizontal-firstname-input" class="col-md-2 col-form-label">Category </label>
+                                        <div class="col-sm input-group">
+                                            <h:selectOneMenu class="form-select" value="#{newsBean.categoryIDFK}">
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{newsBean.categoryList}" var="category" itemValue="#{category.categoryIDPK}" itemLabel="#{category.categoryName}" />
+                                                <f:ajax listener="#{newsBean.fillSubCategory()}" render="subCategory"/>
+                                            </h:selectOneMenu>
+                                            
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    
+                                     <div class="row ">
+                                        <label for="horizontal-firstname-input" class="col-md-2 col-form-label">Sub Category </label>
+                                        <div class="col-sm input-group">
+                                            <h:selectOneMenu id="subCategory" class="form-select" value="#{newsBean.subCategoryIDFK}" required="true" label="Select Category">
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{newsBean.subCategoryList}" var="subcategory" itemValue="#{subcategory.subCategoryIDPK}" itemLabel="#{subcategory.subCategoryName}" />
+                                            </h:selectOneMenu>
+                                             <h:panelGrid columns="3">
+                                                        <h:message for="subCategory" style="color:red" />
+                                                    </h:panelGrid>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    
+                                    
+                            
+                                       <div class="row">
+                                        <label  class="col-md-2 col-form-label">State</label>
+                                        <div class="col-sm input-group">
+                                            <h:selectOneMenu class="form-select" value="#{newsBean.stateIDFK}" >
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{newsBean.stateList}" var="state" itemValue="#{state.stateIDPK}" itemLabel="#{state.stateName}" />
+                                                <f:ajax listener="#{newsBean.fillCity()}" render="city"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    
+                                     <div class="row">
+                                        <label  class="col-md-2 col-form-label">City </label>
+                                        <div class="col-sm input-group">
+                                            <h:selectOneMenu id="city" class="form-select" value="#{newsBean.cityIDFK}"  required="true" label="Select CIty">
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{newsBean.cityList}" var="city" itemValue="#{city.cityIDPK}" itemLabel="#{city.cityName}" />
+                                            </h:selectOneMenu>
+                                             <h:panelGrid columns="3">
+                                                        <h:message for="city" style="color:red" />
+                                                    </h:panelGrid>
+                                        </div>
+                                    </div>
+                                 
+                                    <br/>
+                                    
+                                    
+                                    
+                                          <c:if test="#{session.getAttribute('userType') == 'editor' ||  session.getAttribute('userType') == 'admin' }">      
+                                                    <div class="row">
+                                                       <label  class="col-md-2 col-form-label">NewsType </label>
+                                                       <div class="col-sm input-group">
+                                                           <h:selectOneMenu class="form-select" value="#{newsBean.newsType}">
+                                                               <f:selectItem itemLabel="Select" />
+                                                               <f:selectItem itemValue="1" itemLabel="other" />
+                                                               <f:selectItem itemValue="2" itemLabel="Top Header-SlideBar" />
+                                                               <f:selectItem itemValue="3" itemLabel="Top Header-ImageBox" />
+                                                               <f:selectItem itemValue="4" itemLabel="Content-FeaturePost" />
+                                                               <f:selectItem itemValue="5" itemLabel="Content-Feature Slide-bar" />
+                                                               <f:selectItem itemValue="7" itemLabel="Content-Today-FeaturePost" />
+                                                               <f:selectItem itemValue="6" itemLabel="Content-Life Style" />
+                                                               <f:selectItem itemValue="8" itemLabel="Content-Latest News" />
+                                                               
+                                                           </h:selectOneMenu>
+                                                       </div>
+                                                   </div>
+                                          </c:if>
+                                    <c:if test="#{session.getAttribute('userType') == 'reporter' }">
+                                        <h:inputHidden value="#{newsBean.newsType}"  ><p value="1" /></h:inputHidden>
+                                    
+                                    </c:if>
+                                    
+                                    <br/>
+                                        
+                                                    <div>
+                                                        <c:if test="#{newsBean.newsIDPK == 0}"> 
+                                                            <h:commandButton class="btn btn-success" value="Insert" action="#{newsBean.insert_click()}"/> &nbsp;&nbsp;&nbsp;
+                                                            <h:commandButton class="btn btn-danger" value="Clear" action="#{newsBean.clear()}"/>
+                                                        </c:if>
+                                                        <c:if test="#{newsBean.newsIDPK != 0}">
+                                                            <h:commandButton class="btn btn-success" value="Update" action="#{newsBean.update_click()}"/>
+                                                        </c:if>     
+                                                    </div>
+                                     
+                                        
+                                         </h:form>  
+                                       
+                                                
+                                      
+
+                                    </div>
+                                </div>
+                    </div>
+                  
+                    
+                    
+                    
+                   
+                    
+                    
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+
+              
+               
+                <!-- end modal -->
+                <!--  start    footer-->
+           
+                     <ui:include src="include/footer.xhtml" /> 
+                 
+              
+              <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+      
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+       
+                    <ui:include src="include/bottomscript.xhtml" /> 
+       
+        
+    </h:body>
+</html>
+
+
+

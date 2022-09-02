@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+
+
+        <ui:include src="include/topscript.xhtml" /> 
+
+
+    </h:head>
+    <h:body>
+
+        <div id="layout-wrapper">
+
+            <ui:include src="include/header.xhtml" />
+
+
+            <!-- ========== Left Sidebar Start ========== -->
+
+            <ui:include src="include/nav.xhtml" /> 
+
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content" align="center">
+
+                    <h1> News</h1>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <h:form>
+                                <h:dataTable value="#{newsBean.show_all()}" var="item" class="table mb-0 table-bordered table-striped table-light" headerClass="table-dark">
+                                    <h:column>
+                                        <f:facet name="header" > # </f:facet>
+                                            #{c=c+1}
+                                    </h:column>
+
+                                    <h:column pt:style="width:350px;">
+                                        <f:facet name="header" >Information</f:facet>
+                                        <b> TITLE : </b> #{item.newsTitle} <br/><hr/>
+                                        <b> SUB-TITLE : </b> #{item.newsSubtitle} <br/><hr/>
+                                        <b> DESCRIPTION : </b><div style="height: 100px ; overflow:auto; margin-top: 10px"> <h:outputText escape="false" value="#{item.newsDescription}"/></div> <br/><hr/>
+                                        <b> DATE : </b> #{item.newsDate} 
+                                    </h:column>
+                                    
+                                     <h:column>
+                                        <f:facet name="header" >Location</f:facet>
+                                        <b> COUNTRY : </b> #{item.cityIDFK.stateIDFK.countryIDFK.countryName} <br/><hr/>
+                                        <b> STATE : </b> #{item.cityIDFK.stateIDFK.stateName} <br/><hr/>
+                                        <b> CITY : </b> #{item.cityIDFK.cityName}
+                                    </h:column>
+                                    
+                                    
+                                     
+                                     <h:column>
+                                        <f:facet name="header" >Category</f:facet>
+                                        <b> CATEGORY : </b> #{item.subCategoryIDFK.categoryIDFK.categoryName} <br/><hr/>
+                                        <b> SUB CATEGORY : </b> #{item.subCategoryIDFK.subCategoryName}
+                                    </h:column>
+                                    
+                                         <h:column>
+                                        <f:facet name="header" >Image</f:facet>
+                                        <h:commandLink class="btn btn-primary btn-sm  "  id="btn_image"  action="/Admin/displayNewsImage.xhtml" actionListener="#{newsImageBean.addNewsIDFK(item.newsIDPK)}">
+                                                 <i class="fas fa-images"></i>
+                                        </h:commandLink>                   
+                                         </h:column>
+                                    
+                                    
+                                    <!--
+                                    <h:column>
+                                        <f:facet name="header" >ads image</f:facet>
+                                        <img src="/newsPortal-war/upload/blogImage/" style="height: 100px; width: 100px"/>
+                                    </h:column>-->
+
+                                    <h:column>
+                                        <f:facet name="header" >Operation</f:facet>
+                                        <h:commandLink class="btn btn-success btn-sm  "  id="btn_edit"  action="#{newsBean.search_click(item.newsIDPK)}">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        </h:commandLink>                                         
+ 
+                                        &nbsp;&nbsp;&nbsp;
+                                        <h:commandLink class="btn btn-danger btn-sm  "  id="btn_delete"  action="#{newsBean.delete_click(item.newsIDPK)}">
+                                        <i class="fas fa-trash-alt"></i>
+                                        </h:commandLink>                                        
+
+                                        
+                                        
+                                    </h:column>
+                                    
+                                  <h:column>
+                                             <f:facet name="header" >News Status</f:facet>
+                                             
+                                   <c:if test="#{session.getAttribute('userType') == 'reporter' ||  session.getAttribute('userType') == 'admin' }">
+
+                                         <h:commandLink disabled="#{newsBean.isAvailable_Click(item.newsIDPK, item.newsStatus)}" class=" #{(item.newsStatus == 2) ? 'badge badge-pill badge-soft-success font-size-13 ' : (item.newsStatus == 1) ? 'badge badge-pill badge-soft-danger font-size-13' : 'badge badge-pill badge-soft-warning font-size-13'}" value=" #{(item.newsStatus == 2) ? 'Accepted' : (item.newsStatus == 1) ? 'Rejected' : 'Pending'}" style="padding: 11px; pointer-events: none" ></h:commandLink>
+                                       
+                                         
+                                        </c:if>
+
+                                     <c:if test="#{session.getAttribute('userType') == 'editor'}">      
+
+                                       <h:commandLink action="#{newsBean.isAvailable_Click(item.newsIDPK, item.newsStatus == 2 ? '1' :2  )}" class=" #{item.newsStatus == 2 ? 'btn btn-danger waves-effect waves-light' : 'btn btn-success waves-effect waves-light'}" value=" #{item.newsStatus == 2 ? 'Reject' : 'Accept'}" style="padding: 11px;" ></h:commandLink> &nbsp;&nbsp;&nbsp; 
+    
+                                        </c:if>
+
+
+
+      
+                                    </h:column>
+
+                                    
+                                </h:dataTable>
+                            </h:form>
+                        </div>
+
+                    </div>
+
+
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+
+
+
+
+                <!-- end modal -->
+                <!--  start    footer-->
+
+                <ui:include src="include/footer.xhtml" /> 
+
+
+                <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+
+        <ui:include src="include/bottomscript.xhtml" /> 
+
+
+    </h:body>
+</html>
+
+
+
+

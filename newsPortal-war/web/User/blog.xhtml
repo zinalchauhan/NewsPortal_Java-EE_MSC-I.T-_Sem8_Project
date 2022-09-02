@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+       
+
+        <ui:include src="include/topscripts.xhtml" /> 
+        
+    </h:head>
+    <h:body>
+        
+        
+<div id="container">
+		<!-- Header  ================================================== -->
+                                            
+                                                <ui:include src="include/header.xhtml" /> 
+                
+		<section id="content-section">
+			<div class="container">
+                            
+                                                        <div class="row">
+
+					<div class="col-lg-4 sidebar-sticky">
+						
+						<!-- Sidebar -->
+						<div class="sidebar theiaStickySidebar">
+							
+							<div class="widget slider-widget">
+								<h1>BLOG AUTHOR</h1>
+								<div class="flexslider">
+									<ul class="slides">
+                                                                            
+										<li>
+                                                                                    <img alt="" src="/newsPortal-war/upload/userImage/#{blogBean.userImage}" />
+											<div class="slider-caption">
+                                                                                                                                                                                                                                              <a href="#" class="category category-tech">Blog By </a>
+                                                                                                                                                                                                                                               <h1><a  class="category category-tech" href="single-post.html">#{blogBean.userName}</a></h1>
+												<ul class="post-tags">
+													
+                                                                                                                                                                                                                                                                    <li><a href="#"><i class="lnr lnr-earth"></i><span>#{blogBean.userEmail}</span></a></li>
+                                                                                                                                                                                                                                                                    <li><a href="#"><i class="lnr lnr-earth"></i><span>#{blogBean.userMobile}</span></a></li>
+												</ul>
+											</div>
+										</li>
+                                                                    
+										
+									</ul>
+								</div>
+							</div>
+							
+							
+							
+
+							
+
+							
+
+							
+
+						</div>
+
+					</div>
+					
+					<div class="col-lg-8">
+						
+						<!-- single-post -->
+						<div class="single-post">
+                                                                                                                          <h1>#{blogBean.blogTitle}</h1>
+							<ul class="post-tags">
+                                                                                                                                                                <li><i class="lnr lnr-user"></i>by <a href="#">#{blogBean.blogAuthor}</a></li>
+                                                                                                                                                                <li><a href="#"><i class="lnr lnr-book"></i><span>#{blogBean.subCategoryIDFK}</span></a></li>
+                                                                                                                                                                <li><a href="#"><i class="lnr lnr-calendar-full"></i><span>#{blogBean.blogDate}</span></a></li>
+							</ul>
+							
+                                                                                                                                              <img src="/newsPortal-war/upload/blogImage/#{blogBean.blogImage}" alt="" />
+							  <div class="text-boxes">
+								
+								<p>
+									<h:outputText escape="false" value="#{blogBean.blogDescription}" />	
+								</p>
+								
+							 </div>
+							
+							
+							
+						</div>
+						
+						
+				
+
+					</div>
+
+				</div>
+                            
+                                                                        
+                                                         
+
+                                                                      <!-- Advertisement -->
+				 <c:forEach items="#{adsBean.showall()}" begin="4" end="4"  var="item" >
+					<div class="advertisement">
+                                                                                                        <a href="#"><img src="/newsPortal-war/upload/adsImage/#{item.adsImage}" alt="" style="height: 80px; width: 620px"/></a>
+					</div>
+                                                                                </c:forEach>
+				
+				
+				<!-- End Advertisement -->    
+                                
+                                
+                                
+                            
+                            
+                                                    </div>
+                                  </section>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+
+		<!-- footer  ================================================== -->
+                                                <ui:include src="include/footer.xhtml" /> 
+		<!-- End footer -->
+
+	</div>
+	<!-- End Container -->
+
+	<!-- Login Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <div class="title-section">
+	        	<h1>Login</h1>
+	        </div>
+			<form id="login-form">
+				<p>Welcome! Login to your account.</p>
+				<label for="username">Username or Email Address*</label>
+				<input id="username" name="username" type="text" />
+				<label for="password">Password*</label>
+				<input id="password" name="password" type="password" />
+				<button type="submit" id="submit-register">
+					<i class="fa fa-paper-plane"></i> Login
+				</button>
+			</form>
+	      	<p>Don't have account? <a href="register.html">Register Here</a></p>
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- End Login Modal -->
+
+        <ui:include src="include/bottomscripts.xhtml" /> 
+        
+    </h:body>
+</html>
+

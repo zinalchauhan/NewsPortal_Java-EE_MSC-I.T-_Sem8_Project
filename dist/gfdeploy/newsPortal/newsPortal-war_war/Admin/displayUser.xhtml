@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+
+
+        <ui:include src="include/topscript.xhtml" /> 
+
+
+    </h:head>
+    <h:body>
+
+        <div id="layout-wrapper">
+
+            <ui:include src="include/header.xhtml" />
+
+
+            <!-- ========== Left Sidebar Start ========== -->
+
+            <ui:include src="include/nav.xhtml" /> 
+
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content" align="center">
+
+                    <h1> User </h1>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <h:form>
+                                <h:dataTable value="#{userBean.showallUser()}" var="item" class="table mb-0 table-bordered table-striped table-light" headerClass="table-dark">
+                                    
+                                    <h:column>
+                                        <f:facet name="header" > # </f:facet>
+                                        <b>#{c=c+1}</b>
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header" >Personal Information</f:facet>
+                                        <b> NAME : </b> #{item.userName} <BR/><HR/>
+                                        <b> EMAIL : </b>#{item.userEmail} <BR/><HR/>
+                                        <b> MOBILE NUMBER : </b> #{item.userMobile} <BR/><HR/>
+                                        <b> GENDER : </b> #{item.userGender} <BR/><HR/>
+                                        <b> PASSWORD : </b> #{item.userPassword}
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header" >Residence</f:facet>
+                                        <b> ADDRESS : </b> #{item.userAddress} <BR/><HR/>
+                                        <b> STATE : </b> #{item.cityIDFK.stateIDFK.stateName} <br/><hr/>
+                                        <b> CITY : </b> #{item.cityIDFK.cityName}
+                                    </h:column>
+                                    
+                                     <h:column>
+                                        <f:facet name="header" >User Image</f:facet>
+                                        <img src="/newsPortal-war/upload/userImage/#{item.userImage}" style="height: 250px; width: 250px"/>
+                                   
+                                    </h:column>
+                                    
+                                    <h:column>
+                                        <f:facet name="header" >User Type</f:facet>
+                                         #{item.userType}
+                                    </h:column>
+                                    
+
+                                    <h:column >
+                                        <f:facet name="header" >Operation</f:facet>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;    
+                                        <h:commandLink class="btn btn-danger btn-sm  "  id="btn_delete"  action="#{userBean.delete_click(item.userIDPK)}">
+                                        <i class="fas fa-trash-alt"></i>
+                                        </h:commandLink>                                        
+
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                        </div>
+
+                    </div>
+
+
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+
+
+
+
+                <!-- end modal -->
+                <!--  start    footer-->
+
+                <ui:include src="include/footer.xhtml" /> 
+
+
+                <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+
+        <ui:include src="include/bottomscript.xhtml" /> 
+
+
+    </h:body>
+</html>
+
+

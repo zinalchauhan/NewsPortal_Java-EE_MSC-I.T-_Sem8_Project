@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+    </h:head>
+    <h:body>
+       
+        <header class="clearfix">
+            <title>AirNews</title>
+			<div class="top-line">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 col-sm-9">
+							<ul class="info-list">
+								<li>
+                                                                    <span class="live-time"><i class="fa fa-calendar-o"></i>  <p id='demo'></p>    </span>
+								</li>
+								<li>
+									<a href="about.html">About Us</a>
+								</li>
+								
+								<li>
+									<a href="forums.html">Forum</a>
+								</li>
+                                                                                                                                        <c:if test="#{session.getAttribute('userID') == null}">
+								<li>
+                                                                                                                                                            <a href="http://localhost:8080/newsPortal-war/login.xhtml"  >Login</a>
+								</li>
+                                                                                                                                               
+                                                              
+                                                            
+                                                                                                                                          <li>
+									<a href="#" data-toggle="modal" data-target="#loginModal">Register</a>
+								</li>
+                                                                                                                                         </c:if>
+                                                                                                                                                        <li>
+									<a href="./aboutUs.xhtml">About Us</a>
+								</li>
+                                                                                                                                                                    <li>
+									<a href="./contactUs.xhtml">Contact Us</a>
+								</li>
+                                                                                                                                        
+                                                            
+							</ul>
+                                                                                                                                            <ul class="info-list" style="align-content: center">
+                                                                                                                                                <c:if test="#{session.getAttribute('userID') != null}">
+                                                                                                                                                        <li>
+                                                                                                                                                            
+                                                                                                                                                            <h:form><h:commandLink  action="#{userLoginBean.logoutUser()}" value="logout" /></h:form>
+                                                                                                                                                        </li>
+                                                                                                                                                    
+                                                                                                                                                         <li>
+                                                                                                                                                            
+                                                                                                                                                             <h:form><h:commandLink  action="#{userBean.search_singleUserProfile(session.getAttribute('userID'))}" value="Profile" /><i class="fa fa-user"></i></h:form>
+                                                                                                                                                        </li>
+                                                                                                                                               </c:if>  
+                                                                                                                                                </ul>
+                                                                                                                                               
+                                                 
+						</div>  
+                                                                                                                                    
+						<div class="col-md-4 col-sm-3">
+							<ul class="social-icons">
+								<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
+								<li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+							</ul>
+						</div>	
+					</div>
+				</div>
+			</div>
+
+			<div class="header-banner-place">
+				<div class="container">
+					<a class="navbar-brand" >
+                                                                                                                       <img src="./assets/images/airNews.png" height="60px" width="150px" alt="" />
+						<p>Newspaper &amp; Editorial  Magazine</p>
+                                                
+					</a>
+                                                                                                        <c:forEach items="#{adsBean.showall()}" begin="0" end="0"  var="item" >
+					<div class="advertisement">
+                                                                                                     <a href="#"><img src="/newsPortal-war/upload/adsImage/#{item.adsImage}" alt="" style="height: 80px; width: 620px"/></a>
+					</div>
+                                                                                                     </c:forEach>
+				</div>
+			</div>
+
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<div class="container">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item active">
+								<a class="nav-link" href="index.xhtml">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link features" href="#">City <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+								<div class="megamenu">
+									<div class="row">
+										<div class="col-lg-3">
+											<h2 class="lay-one">Major City</h2>
+											<ul class="mega-list">
+                                                                                                                                                                                                                                                     <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(147)}" value="SURAT" /></h:form></li>
+                                                                                                                                                                                                                                                    <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(337)}" value="PUNE" /></h:form></li>
+                                                                                                                                                                                                                                                    <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(329)}" value="MUMBAI" /></h:form></li>
+                                                                                                                                                                                                                                                        <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(125)}" value="AHEMDABAD" /></h:form></li>
+                                                                                                                                                                                                                                                            <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(595)}" value="KOLKATA" /></h:form></li>
+												
+											</ul>
+										</div>-
+										<div class="col-lg-3">
+											<h2 class="lay-two">OTHER'S CITY</h2>
+											<ul class="mega-list">
+												 <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(123)}" value="GOA" /></h:form></li>
+                                                                                                                                                                                                                                                    <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(148)}" value="VADODRA" /></h:form></li>
+                                                                                                                                                                                                                                                    <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(144)}" value="RAJKOT" /></h:form></li>
+                                                                                                                                                                                                                                                        <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(325)}" value="JALGAON" /></h:form></li>
+                                                                                                                                                                                                                                                            <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(334)}" value="NASHIK" /></h:form></li>
+												
+											</ul>
+										</div>
+										<div class="col-lg-3">
+											<br/><br/>
+											<ul class="mega-list">
+												 <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(487)}" value="TIRUPATI" /></h:form></li>
+                                                                                                                                                                                                                                                    <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(515)}" value="AGRA" /></h:form></li>
+                                                                                                                                                                                                                                                    <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(270)}" value="BHOPAL" /></h:form></li>
+                                                                                                                                                                                                                                                        <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(469)}" value="CHENNAI" /></h:form></li>
+                                                                                                                                                                                                                                                            <li><h:form ><h:commandLink action="./newsByCity.xhtml" actionListener="#{newsBean.addcityIDFK(114)}" value="DELHI" /></h:form></li>
+												
+											</ul>
+										</div>
+										
+									</div>
+								</div>
+							</li>
+							
+                                                                                                                                            <li class="nav-item active">
+								<a class="nav-link" href="debatelist.xhtml">Debate</a>
+							</li>
+                                                                                                                                            <li class="nav-item active">
+								<a class="nav-link" href="bloglist.xhtml">Blog</a>
+							</li>
+                                                                                                                                            <li class="nav-item">
+								<a class="nav-link sport" href="jobList.xhtml">Jobs</a>
+							</li>
+                                                                                                                                              <li class="nav-item">
+								<a class="nav-link features" href="podcastList.xhtml">Podcast</a>
+							</li>
+                                                                                                                                              <li class="nav-item">
+								<a class="nav-link pages" href="newsVideoList.xhtml">NewsVideo</a>
+							</li>
+                                                    
+                                                    
+						</ul>
+						
+					</div>
+				</div>
+			</nav>
+		</header>
+        
+    </h:body>
+</html>
+

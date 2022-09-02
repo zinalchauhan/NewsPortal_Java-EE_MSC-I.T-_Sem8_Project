@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        
+      
+                 <ui:include src="include/topscript.xhtml" /> 
+            
+
+    </h:head>
+    <h:body>
+
+        <div id="layout-wrapper">
+
+                         <ui:include src="include/header.xhtml" />
+            
+                      
+
+            <!-- ========== Left Sidebar Start ========== -->
+            
+                          <ui:include src="include/nav.xhtml" /> 
+         
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                    
+                <div class="page-content" align="center">
+                    
+                    <h1 >Debate</h1>
+                    
+                   
+                    <div class="col-xl-9">
+                                <div class="card">
+                                         <div class="card-body">
+
+                                   <h:form id="form" enctype="multipart/form-data">
+                                        
+                                       <h:inputHidden value="#{debateBean.debateIDPK}" />
+                                     
+                                        <div class="mb-3 row">
+                                            <label  class="col-md-2 col-form-label">Title</label>
+                                            <div class="col-md-10">
+                                                <h:inputText id="debatet" class="form-control"  value="#{debateBean.debateTitle}"  a:placeholder="Enter Debate Title" required="true" label="Please Enter The Debate Title"/>
+                                                <h:panelGrid columns="3">
+                                                        <h:message for="debatet" style="color:red" />
+                                                    </h:panelGrid>
+                                            </div>
+                                        </div>
+                            <br/>
+                            
+                                 
+                            
+                            
+                                        <div class="mb-3 row">
+                                            <label  class="col-md-2 col-form-label">Description</label>
+                                            <div class="col-md-10">
+                                                <p:textEditor secure="false" widgetVar="editor1" value="#{debateBean.debateDescription}" height="250" placeholder="Enter Debate Description" />
+                                           
+                                            </div>
+                                        </div>
+                            <br/>
+                            
+                            <div class="mb-3 row">
+                                            <label for="example-date-input" class="col-md-2 col-form-label">Image</label>
+                                            <div class="col-md-10">
+                                                <h:inputFile id="filed" class="form-control"  value="#{debateBean.file}" required="true" label="Upload the Image"/>
+                                                   <h:panelGrid columns="3">
+                                                        <h:message for="filed" style="color:red" />
+                                                    </h:panelGrid>
+                                            </div>
+                                        </div>
+                            <br/>
+                            
+                            <div class="row">
+                                                <label class="col-md-2 col-form-label">Date</label>
+
+                                                <div class="col-sm input-daterange input-group" id="datepicker6"  data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                                    <h:inputText  id="dedate" class="form-control" a:placeholder="Start Date" value="#{debateBean.debateStartDate}"  autocomplete="off" required="true" label="Select The Date"/>
+                                                    <h:inputText class="form-control" a:placeholder="End Date" value="#{debateBean.debateEndDate}" autocomplete="off"/>
+                                                     <h:panelGrid columns="3">
+                                                        <h:message for="dedate" style="color:red" />
+                                                    </h:panelGrid>
+                                                </div>
+<!--                                                <div class="col-sm input-group "  id="datepicker2">
+                                                    <h:inputText pt:type="text" class="form-control" pt:placeholder="Start Date" pt:data-date-format="dd M, yyyy" pt:data-date-container='#datepicker2' pt:data-provide="datepicker"
+                                                                 pt:data-date-autoclose="true" value=""/>
+
+                                                    <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                                </div>
+
+                                                <div class="col-sm input-group "  id="datepicker3">
+                                                    <h:inputText pt:type="text" class="form-control" pt:placeholder="End Date" pt:data-date-format="dd M, yyyy" pt:data-date-container='#datepicker3' pt:data-provide="datepicker"
+                                                                 pt:data-date-autoclose="true" value=""/>
+
+                                                    <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                                </div>-->
+
+
+                                            </div>
+                            <br/>
+                            
+                            <div class="row">
+                                        <label for="horizontal-firstname-input" class="col-md-2 col-form-label">Category</label>
+                                        <div class="col-sm input-group">
+                                            <h:selectOneMenu class="form-select" value="#{debateBean.categoryIDFK}" >
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{debateBean.categoryList}" var="category" itemValue="#{category.categoryIDPK}" itemLabel="#{category.categoryName}" />
+                                                <f:ajax listener="#{debateBean.fillSubCategory()}" render="subCategory"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                            <br/>
+                                    
+                                     <div class="row">
+                                        <label for="horizontal-firstname-input" class="col-md-2 col-form-label">Sub Category </label>
+                                        <div class="col-sm input-group">
+                                            <h:selectOneMenu id="subCategory" class="form-select" value="#{debateBean.subCategoryIDFK}" required="true" label="Select the Category">
+                                                <f:selectItem itemLabel="Select" />
+                                                <f:selectItems value="#{debateBean.subCategoryList}" var="subcategory" itemValue="#{subcategory.subCategoryIDPK}" itemLabel="#{subcategory.subCategoryName}" />
+                                            </h:selectOneMenu>
+                                              <h:panelGrid columns="3">
+                                                        <h:message for="subCategory" style="color:red" />
+                                                    </h:panelGrid>
+                                        </div>
+                                    </div>
+                            <br/>
+                                    
+                                 
+                            
+                                        
+                                           <div class="row justify-content-end">
+                                                <div class="col-sm-11">
+
+                                                    <div>
+                                                        <c:if test="#{debateBean.debateIDPK == 0}"> 
+                                                            <h:commandButton class="btn btn-success" value="Insert" action="#{debateBean.insert_click()}"/> &nbsp;&nbsp;&nbsp;
+                                                            <h:commandButton class="btn btn-danger" value="Clear" action="#{debateBean.clear()}"/>
+                                                        </c:if>
+                                                        <c:if test="#{debateBean.debateIDPK != 0}">
+                                                            <h:commandButton class="btn btn-success" value="Update" action="#{debateBean.update_click()}"/>
+                                                        </c:if>    
+                                                    </div>
+                                                </div>
+                                            </div>        
+                                        
+                                         </h:form>  
+                                       
+                                                
+                                      
+
+                                    </div>
+                                </div>
+                    </div>
+                  
+                    
+                    
+                    
+                   
+                    
+                    
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+
+              
+               
+                <!-- end modal -->
+                <!--  start    footer-->
+           
+                     <ui:include src="include/footer.xhtml" /> 
+                 
+              
+              <!--  end  footer-->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+      
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+       
+                    <ui:include src="include/bottomscript.xhtml" /> 
+       
+        
+    </h:body>
+</html>
